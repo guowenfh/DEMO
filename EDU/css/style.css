@@ -1,0 +1,1073 @@
+/*css重置*/
+
+html,
+body,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+form,
+table,
+td,
+img,
+div,
+i,
+em,
+span,
+ul,
+input,
+video {
+    margin: 0;
+    padding: 0;
+    /*box-sizing*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 12px;
+    font-family: Helvetica, Arial, "Microsoft YaHei", "SimSun", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+img {
+    border: none;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+input {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/*清除浮动*/
+
+.clearfix:after {
+    content: "\200B";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+body {
+    background-color: #F8F8F8;
+}
+
+
+/*整体宽度控制*/
+.container {
+    overflow: hidden;
+    max-width: 1615px;
+    margin: 0 auto;
+}
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+
+
+/*引入字体图标*/
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('iconfont.eot');
+    /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 12px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*引入字体图标结束*/
+
+
+/*顶部通知区域开始*/
+
+#notice {
+    height: 36px;
+    background-color: #F8F8F8;
+    font-family: "Microsoft YaHei";
+    line-height: 36px;
+    color: #333;
+    margin-top: 0;
+}
+
+.notice-content {
+    float: left;
+}
+
+.notice-content a {
+    color: #21A557;
+    margin-left: 10px;
+}
+
+#no-notice {
+    float: right;
+    height: 36px;
+    cursor: pointer;
+}
+
+#no-notice .iconfont {
+    font-size: 9px;
+    margin-right: 6px;
+}
+
+
+/*顶部通知区域结束*/
+
+
+/*登录层开始*/
+
+.login-wrap,
+.moive-wrap {
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
+    filter: alpha(opacity="80");
+    -ms-filter: 'progid.DXImageTransform.Microsoft.Alpha(opacity=80)';
+    display: none;
+}
+
+.login {
+    z-index: 99999;
+    filter: alpha(opacity="100");
+    position: fixed;
+    width: 388px;
+    height: 288px;
+    left: 50%;
+    top: 50%;
+    margin-top: -144px;
+    margin-left: -194px;
+    background-color: #fff;
+}
+
+#login-close,
+#moive-close {
+    font-size: 14px;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    color: #5A5A5A;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.login h2 {
+    color: #434343;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+#login-form {
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 16px;
+}
+
+#login-form input,
+#login-form .login-btn {
+    height: 45px;
+    width: 295px;
+    line-height: 45px;
+    border-radius: 5px;
+}
+
+#login-form input {
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+}
+
+#login-form .login-btn {
+    margin-top: 15px;
+    background-color: #19A33A;
+    color: #fff;
+    border: 1px solid #D5E3DA;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px #D5E3DA;
+}
+
+.login-error {
+    position: absolute;
+    margin: -8px 0 0 8px;
+    color: #fa0000;
+    font-size: 12px;
+    display: none;
+}
+
+
+/*登录层结束*/
+
+
+/*视频层开始*/
+
+.moive-content {
+    height: 640px;
+    width: 950px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -475px;
+    margin-top: -320px;
+    background-color: #fff;
+    padding-top: 30px;
+}
+
+.moive-content p {
+    color：#424242;
+    font-size: 18px;
+    padding-left: 30px;
+    margin-bottom: 20px;
+}
+
+.moive-content div {
+    width: 890px;
+    height: 540px;
+    margin: 0 auto;
+}
+
+#moive {
+    max-width: 100%;
+}
+
+
+/*视频层结束*/
+
+
+/*头部开始*/
+
+#header {
+    font-size: 16px;
+    height: 90px;
+    background-color: #fff;
+    color: #656565;
+    font-family: "Arial", "Microsoft YaHei";
+}
+
+.header-title {
+    font-size: 22px;
+    color: #333;
+    line-height: 90px;
+    float: left;
+}
+
+.header-title span {
+    color: #399F2F;
+    border-right: 1px solid #399F2F;
+    height: 22px;
+    margin: 34px 15px 34px 0;
+    padding-right: 10px;
+}
+
+.follow {
+    font-family: "SimSun";
+    font-size: 12px;
+    float: left;
+}
+
+#follow {
+    margin: 34px 15px 34px 27px;
+    line-height: 22px;
+    height: 22px;
+    float: left;
+}
+
+#follow span {
+    display: block;
+    height: 22px;
+    width: 60px;
+    background-color: #21A557;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #21A557;
+    border-radius: 2px;
+}
+
+.follow-fans {
+    margin: 34px 0;
+    line-height: 22px;
+    height: 22px;
+    float: left;
+    color: #656565;
+}
+
+#follow .follow-remove {
+    float: left;
+    height: 22px;
+    width: 106px;
+    border: 1px solid #EFEFEF;
+    background-color: #F8F8F8;
+    border-radius: 2px;
+    display: none;
+}
+
+.follow-remove em {
+    font-style: normal;
+    float: left;
+    border-right: 1px solid #CCC;
+    padding-right: 10px;
+    height: 12px;
+    line-height: 12px;
+    margin: 5px 8px 5px 5px;
+    color: #333;
+}
+
+.remove-define {
+    float: left;
+    color: #999;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.remove-define:hover {
+    color: #21A557;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.header-nav {
+    padding: 0;
+    float: right;
+    margin-right: 90px;
+    font-size: 16px;
+}
+
+.header-nav li {
+    float: right;
+    height: 26px;
+    margin: 32px 0 32px 42px;
+}
+
+.header-nav li a {
+    color: #656565;
+}
+
+.header-nav li a:hover {
+    color: #399F2F;
+}
+
+.search {
+    position: absolute;
+    right: 12px;
+    font-size: 20px;
+    line-height: 90px;
+    -webkit-transition: font-size 0.25s ease-out 0s;
+    -moz-transition: font-size 0.25s ease-out 0s;
+    transition: font-size 0.25s ease-out 0s;
+}
+
+.search:hover {
+    color: #399F2F;
+    font-size: 40px;
+}
+
+
+/*头部结束*/
+
+
+/*轮播图开始*/
+
+.Slideshow {
+    height: 460px;
+    position: relative;
+    width: 1615px;
+    margin: 0 auto;
+}
+
+.Slideshow a {
+    position: absolute;
+    filter: alpha(opacity: 100);
+    opacity: 1;
+}
+
+.Slideshow img {
+    height: 460px;
+    width: 1615px;
+}
+
+.Slideshow-nav {
+    padding: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    width: 70px;
+    margin-left: -30px;
+}
+
+.Slideshow-nav li {
+    float: left;
+    margin-left: 10px;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    border: 1px solid #FFF;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.Slideshow-nav li.active {
+    border-color: #333;
+    background-color: #333;
+}
+
+
+/*轮播图结束*/
+
+
+/*三个课堂部分开始*/
+
+.study {
+    padding-top: 57px;
+    padding-bottom: 57px;
+    background-color: #FFF;
+}
+
+.classroom {
+    height: 80px;
+    width: 80px;
+    background-color: #399F2F;
+    border: 1px solid #399F2F;
+    border-radius: 50%;
+    position: relative;
+    float: left;
+}
+
+.classroom div {
+    background: url(../img/classroom.png) no-repeat;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.open div {
+    height: 50px;
+    width: 51px;
+    background-position: 0 0;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+
+.online div {
+    height: 52px;
+    width: 51px;
+    background-position: 0 -80px;
+    margin-top: -26px;
+    margin-left: -25px;
+}
+
+.mooc div {
+    height: 52px;
+    width: 64px;
+    background-position: 0 -160px;
+    margin-top: -25px;
+    margin-left: -32px;
+}
+
+.room-column {
+    float: left;
+    margin-left: 69px;
+}
+
+.room-column:first-child {
+    margin-left: 0;
+}
+
+.room-msg {
+    width: 254px;
+    margin-left: 100px;
+}
+
+.room-msg h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.room-msg p {
+    color: #656565;
+    font-size: 14px;
+    padding-right: 4px;
+}
+
+.room-msg a {
+    float: left;
+    margin-top: 25px;
+    color: #399F2F;
+}
+
+.room-msg a:hover {
+    text-decoration: underline;
+}
+
+
+/*三个课堂结束*/
+
+
+/*生活环境开始*/
+
+.environment {
+    overflow: hidden;
+    height: 220px;
+    position: relative;
+    width: 1615px;
+    margin: 0 auto;
+}
+
+.environment-ul {
+    position: absolute;
+}
+
+.environment li {
+    float: left;
+    display: block;
+    width: 323px;
+    height: 220px;
+}
+/*生活环境结束*/
+
+
+/*课程列表整体开始*/
+
+.main {
+    padding-top: 80px;
+    background-color: #F8F8F8;
+    padding-bottom: 120px;
+}
+
+
+/*课程列表tab切换开始*/
+
+.conent-tab {
+    padding: 0;
+}
+
+.conent-tab li {
+    float: left;
+    width: 202px;
+    height: 52px;
+    line-height: 52px;
+    color: #656565;
+    background-color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #DCDCDC;
+    box-shadow: 2px 2px 2px #DCDCDC;
+    cursor: pointer;
+}
+
+.conent-tab li.tab-active {
+    color: #fff;
+    background-color: #399F2F;
+}
+
+
+/*tab切换结束*/
+
+
+/*课程列表主内容区开始*/
+
+.design {
+    margin-top: 26px;
+}
+
+.content {
+    float: left;
+    width: 960px;
+    margin-right: -16px;
+    height: 1350px;
+    position: relative;
+}
+
+
+/*每个课程的样式*/
+
+.class-list {
+    float: left;
+    height: 228px;
+    width: 225px;
+    border: 1px solid #F1F1F1;
+    margin-right: 14px;
+    font-size: 12px;
+    margin-bottom: 18px;
+    background-color: #fff;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.class-list img {
+    display: block;
+    margin: 0 auto;
+    width: 221px;
+    height: 124px;
+}
+
+.describe {
+    padding-left: 8px;
+    text-align: left;
+}
+
+.describe a {
+    color: #333;
+    display: block;
+    height: 17px;
+    line-height: 17px;
+    width: 214px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.describe p,
+.describe div {
+    color: #999;
+    margin-bottom: 6px;
+}
+
+.describe div {
+    padding-left: 3px;
+    padding-right: 3px;
+    height: 18px;
+    overflow: hidden;
+    line-height: 18px;
+    border: 1px solid #DDD;
+    border-radius: 2px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.describe div i {
+    margin-right: 5px;
+}
+
+.describe strong {
+    display: block;
+    color: #FF3F00;
+}
+
+
+/*hover时的样式*/
+
+.class-list {
+    float: left;
+    height: 228px;
+    width: 225px;
+    border: 1px solid #F1F1F1;
+    margin-right: 14px;
+    font-size: 12px;
+    margin-bottom: 18px;
+    background-color: #fff;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.hover-class-list {
+    position: relative;
+    float: left;
+    height: 239px;
+    width: 236px;
+    border: 1px solid #F1F1F1;
+    font-size: 12px;
+    background-color: #fff;
+    margin: -11px 14px 18px -11px;
+    padding-top: 11px;
+    padding-left: 12px;
+}
+
+.hover-class-list img {
+    display: block;
+    width: 221px;
+    height: 124px;
+}
+
+.describe-hover {
+    background-color: #fff;
+    position: absolute;
+    width: 243px;
+    height: 155px;
+    left: 232px;
+    top: 0;
+    z-index: 222;
+    padding: 11px 0 0 10px;
+}
+
+.describe-hover a {
+    display: block;
+    font-size: 18px;
+    color: #39a030;
+    width: 180px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.describe-hover div {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.describe-hover div i {
+    color: #bbb;
+    margin-right: 5px;
+}
+
+.describe-hover div,
+.describe-hover p {
+    color: #656565;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+}
+
+.description {
+    background-color: #F7F7F7;
+    top: 149px;
+    left: 0;
+    z-index: 2222;
+    position: absolute;
+    width: 475px;
+    height: 88px;
+    color: #656565;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 23px 30px 0 20px;
+    overflow: hidden;
+}
+.description:after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+}
+
+/*课程列表主内容区结束*/
+
+
+/*页码切换开始*/
+
+.pagination {
+    position: absolute;
+    bottom: 0;
+    right: 18px;
+}
+
+.page-ul {
+    padding: 0;
+    float: left;
+}
+
+.pagination i,
+.page-ul li {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.page-ul li {
+    color: #656565;
+    width: 20px;
+    margin-right: 7px;
+}
+
+.page-ul li:first-child {
+    margin-left: 7px;
+}
+
+.pagination i {
+    width: 30px;
+}
+
+.pagination i,
+.page-ul li:hover {
+    background-color: #9DD7B1;
+    color: #fff;
+}
+
+.page-ul li.page-active {
+    color: #399F2F;
+}
+
+
+/*页码切换结束*/
+
+
+/*右侧列表开始*/
+
+.rightSidebar {
+    width: 225px;
+    float: right;
+}
+
+
+/*视频弹窗开始*/
+
+.generalProfile {
+    width: 225px;
+    height: 230px;
+    border: 1px solid #DDD;
+    background-color: #fff;
+    box-shadow: 1px 1px 2px #DDD;
+    margin-bottom: 20px;
+}
+
+.generalProfile h3,
+.ranking h3 {
+    padding-left: 20px;
+    height: 55px;
+    line-height: 55px;
+    color: #333;
+    font-size: 16px;
+    border-bottom: 1px solid #DDD;
+    box-shadow: 0px 1px 1px #DDD;
+}
+
+.studyMoive p {
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #656565;
+    font-size: 14px;
+}
+
+.studyMoive img {
+    display: block;
+    height: 110px;
+    width: 180px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+
+/*视频弹窗结束*/
+
+
+/*热门排行开始*/
+
+.ranking {
+    width: 225px;
+    border: 1px solid #DDD;
+    background-color: #fff;
+}
+
+.generalProfile:hover,
+.ranking:hover {
+    box-shadow: 1px 1px 3px #BBB;
+}
+
+.ranking-list {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.ranking-list a {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.ranking-list div {
+    color: #BBB;
+}
+
+.list-content .iconfont {
+    margin-right: 6px;
+}
+
+.list-content {
+    margin-bottom: 20px;
+}
+
+.list-content img {
+    float: left;
+    height: 50px;
+    width: 50px;
+    margin-right: 12px;
+}
+
+.list-content a {
+    color: #333;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 12px;
+}
+
+
+/*热门排行结束 右侧列表结束 */
+
+
+/*课程列表整体结束*/
+
+
+/*页脚开始*/
+
+.footer {
+    height: 262px;
+    width: 100%;
+    background-color: #2B3339;
+    color: #999;
+}
+
+.copy-right {
+    padding-top: 90px;
+    float: left;
+}
+
+.copy-right h1 {
+    color: #399F2F;
+    font-size: 22px;
+    height: 26px;
+    line-height: 26px;
+    margin-bottom: 20px;
+}
+
+.copy-right span {
+    border-right: 1px solid #399F2F;
+    height: 22px;
+    margin: 0 15px 0 0;
+    padding-right: 10px;
+}
+
+.copy-right p {
+    font-size: 12px;
+    line-height: 22px;
+    height: 22px;
+}
+
+.siteinfo div {
+    float: left;
+    padding-top: 80px;
+    margin-left: 118px;
+}
+
+.siteinfo ul {
+    padding: 0;
+}
+
+.siteinfo p {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.siteinfo p,
+.siteinfo a {
+    height: 20px;
+    line-height: 20px;
+}
+
+.siteinfo a {
+    display: block;
+    font-size: 15px;
+    color: #999;
+    margin-bottom: 8px;
+}
+
+.siteinfo a:hover {
+    text-decoration: underline;
+}
+
+.siteinfo i {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+
+/*页脚结束*/
+
+
+
+
+/*小屏幕自适应,媒体查询*/
+
+@media (max-width:1205px) {
+
+    /*内容宽度控制*/
+    .wrap {
+        width: 960px;
+        margin: 0 auto;
+        position: relative;
+    }
+    /*轮播图*/
+    .Slideshow {
+        height: 460px;
+        position: relative;
+        width: 1205px;
+        margin: 0 auto;
+    }
+    .Slideshow img {
+        height: 460px;
+        width: 1205px;
+    }
+    /*三个课程*/
+    .room-msg {
+        width: 174px;
+        margin-left: 100px;
+    }
+    /*生活环境*/
+    .environment {
+        overflow: hidden;
+        height: 220px;
+        position: relative;
+        width: 1205px;
+        margin: 0 auto;
+    }
+    /*课程列表*/
+    /*在小屏幕时,加载3列,配合js使用*/
+    .content {
+        float: left;
+        width: 720px;
+        margin-right: -16px;
+        height: 1350px;
+        position: relative;
+    }
+}
