@@ -422,9 +422,6 @@ myReady(function () {
  */
 myReady(function () {
     var Slideshow = getByClassName(document, "Slideshow")[0];
-    var Slideshow_nav = Slideshow.getElementsByTagName("div")[0];
-    var winWidth = document.body.clientWidth || window.screen.availWidth;
-    Slideshow_nav.style.width =  winWidth+"px";
     var aImg = Slideshow.getElementsByTagName("a");
     var aLI = Slideshow.getElementsByTagName("li");
     var timer = null;
@@ -462,7 +459,7 @@ myReady(function () {
         aLI[i].id = i;
         myAddEvent(aLI[i], "click", function () {
             change(this.id);
-        });
+        })
     }
     //hover时暂停轮播
     myAddEvent(Slideshow, "mouseover", function () {
@@ -810,6 +807,7 @@ myReady(function () {
 
     Ajax("get", "http://study.163.com/webDev/hotcouresByCategory.htm", {}, function (str) {
         var arr = JSON.parse(str);
+        console.log(arr);
         var i = Math.round(Math.random() * 10);
         var len = i + 10;
         for (i; i < len; i++) {

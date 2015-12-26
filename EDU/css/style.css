@@ -1,25 +1,25 @@
 /*css重置*/
 
-html,
-body,
-ol,
-li,
-p,
-h1,
-h2,
-h3,
-h4,
-form,
-table,
-td,
-img,
-div,
-i,
-em,
-span,
-ul,
-input,
-video {
+html
+,body
+,ol
+,li
+,p
+,h1
+,h2
+,h3
+,h4
+,form
+,table
+,td
+,img
+,div
+,i
+,em
+,span
+,ul
+,input
+,video {
     margin: 0;
     padding: 0;
     /*box-sizing*/
@@ -147,8 +147,8 @@ body {
 
 /*登录层开始*/
 
-.login-wrap,
-.moive-wrap {
+.login-wrap
+,.moive-wrap {
     z-index: 9999;
     position: fixed;
     left: 0;
@@ -175,8 +175,8 @@ body {
     background-color: #fff;
 }
 
-#login-close,
-#moive-close {
+#login-close
+,#moive-close {
     font-size: 14px;
     position: absolute;
     right: 8px;
@@ -199,8 +199,8 @@ body {
     font-size: 16px;
 }
 
-#login-form input,
-#login-form .login-btn {
+#login-form input
+,#login-form .login-btn {
     height: 45px;
     width: 295px;
     line-height: 45px;
@@ -421,10 +421,6 @@ body {
 .Slideshow img {
     height: 460px;
     width: 1615px;
-}
-.Slideshow div{
-    position: relative;
-    height: 460px;
 }
 .Slideshow-nav {
     padding: 0;
