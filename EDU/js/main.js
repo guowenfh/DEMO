@@ -87,7 +87,7 @@ function getCookie(name) {
  * @param {String} name 待删除的cookie名
  */
 function removeCookie(name) {
-    setCookie(name, "1", -1)
+    setCookie(name, "1", -1);
 }
 
 
@@ -259,7 +259,7 @@ function Ajax(type, url, data, success, failed) {
                 }
             }
         }
-    }
+    };
 }
 
 /**
@@ -298,7 +298,7 @@ myReady(function () {
     if (getCookie("close")) {
         oNotice.style.marginTop = -36 + "px";
     } else {
-        oNotice.style.marginTop = 0;;
+        oNotice.style.marginTop = 0;
 
 
 
@@ -381,7 +381,7 @@ myReady(function () {
                     loginError.style.display = "none";
                 }, 2000);
             }
-        }
+        };
         //登录函数
     function loginBtn() {
         //向服务器提交的数据
@@ -404,7 +404,7 @@ myReady(function () {
         showHide(followAdd);
         showHide(followRemove);
 
-    };
+    }
     //取消关注时,改变follow样式,且删除cookie;
     function followNone() {
         followShow();
@@ -437,7 +437,7 @@ myReady(function () {
             change(index);
         }, 5000);
 
-    };
+    }
     autoPlay();
     //改变当前高亮的索引,以及显示的图片,切换方法
     function change(curIndex) {
@@ -460,7 +460,7 @@ myReady(function () {
         aLI[i].id = i;
         myAddEvent(aLI[i], "click", function () {
             change(this.id);
-        });
+        })
     }
     //hover时暂停轮播
     myAddEvent(Slideshow, "mouseover", function () {
@@ -578,7 +578,7 @@ myReady(function () {
                 clientWidth = currClientWidth;
                 tabChange();
             }
-        }
+        };
         //产品设计点击切换
     myAddEvent(tabDesign, "click", function () {
         tabLanguage.className = "";
@@ -617,7 +617,7 @@ myReady(function () {
             pageNoNumber = parseInt(this.innerHTML);
             tabChange();
 
-        }
+        };
     }
 
     //向上向下切换页码
@@ -648,7 +648,6 @@ myReady(function () {
             pageLi[parseInt(pageNoNumber % 8) - 1].className = "page-active";
         }
         tabChange();
-
     }
     //向上翻页点击事件
     myAddEvent(paginationUP, "click", function () {
@@ -676,20 +675,18 @@ myReady(function () {
         var senddata = {
             pageNo: pageNoNumber,
             psize: psizeNumber,
-            type: typeNumber
-        };
+            type: typeNumber};
         Ajax("get", "http://study.163.com/webDev/couresByCategory.htm", senddata,
             function (str) {
                 //成功时.课程列表创建函数
                 var arr = JSON.parse(str);
-
                 //总页数
                 totalPage = arr["totalPage"];
                 var list = arr["list"];
                 for (var i in list) {
                     //课程列表容器
                     var classList = document.createElement("div");
-                    classList.className = "class-list"
+                    classList.className = "class-list";
                         //课程图片
                     var classListImg = document.createElement("img");
                     classListImg.src = list[i].middlePhotoUrl;
@@ -777,10 +774,7 @@ myReady(function () {
                     hoverDescription.style.display = "none";
 
                     classList.appendChild(hoverDiv);
-                    classList.appendChild(hoverDescription);
-
-                }
-
+                    classList.appendChild(hoverDescription);}
                 //课程列表的hover效果
                 //获取课程列表数量
                 var classlisthover = getByClassName(document, "class-list");
@@ -790,28 +784,23 @@ myReady(function () {
                         getByClassName(this, "describe")[0].style.display = "none";
                         getByClassName(this, "describe-hover")[0].style.display = "block";
                         getByClassName(this, "description")[0].style.display = "block";
-                    });
+                    })
                     myAddEvent(classlisthover[i], "mouseout", function () {
                         this.className = "class-list";
                         getByClassName(this, "describe")[0].style.display = "block";
                         getByClassName(this, "describe-hover")[0].style.display = "none";
                         getByClassName(this, "description")[0].style.display = "none";
-                    });
-
+                    })
                 }
-
-
             }
         );
     }
     course();
-
-
 });
 /*课程列表结束*/
 
 
-/* 
+/*
  * 热门排行开始
  */
 myReady(function () {
@@ -819,6 +808,7 @@ myReady(function () {
 
     Ajax("get", "http://study.163.com/webDev/hotcouresByCategory.htm", {}, function (str) {
         var arr = JSON.parse(str);
+        console.log(arr);
         var i = Math.round(Math.random() * 10);
         var len = i + 10;
         for (i; i < len; i++) {
