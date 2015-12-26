@@ -422,9 +422,6 @@ myReady(function () {
  */
 myReady(function () {
     var Slideshow = getByClassName(document, "Slideshow")[0];
-    var Slideshow_nav = Slideshow.getElementsByTagName("div")[0];
-    var winWidth = document.body.clientWidth || window.screen.availWidth;
-    Slideshow_nav.style.width =  winWidth+"px";
     var aImg = Slideshow.getElementsByTagName("a");
     var aLI = Slideshow.getElementsByTagName("li");
     var timer = null;
@@ -439,10 +436,6 @@ myReady(function () {
             }
             change(index);
         }, 5000);
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/gh-pages
     }
     autoPlay();
     //改变当前高亮的索引,以及显示的图片,切换方法
@@ -790,17 +783,13 @@ myReady(function () {
                         getByClassName(this, "describe")[0].style.display = "none";
                         getByClassName(this, "describe-hover")[0].style.display = "block";
                         getByClassName(this, "description")[0].style.display = "block";
-                    })
+                    });
                     myAddEvent(classlisthover[i], "mouseout", function () {
                         this.className = "class-list";
                         getByClassName(this, "describe")[0].style.display = "block";
                         getByClassName(this, "describe-hover")[0].style.display = "none";
                         getByClassName(this, "description")[0].style.display = "none";
-<<<<<<< HEAD
-                    })
-=======
                     });
->>>>>>> refs/remotes/origin/gh-pages
                 }
             }
         );

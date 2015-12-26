@@ -422,10 +422,6 @@ body {
     height: 460px;
     width: 1615px;
 }
-.Slideshow div{
-    position: relative;
-    height: 460px;
-}
 .Slideshow-nav {
     padding: 0;
     position: absolute;
