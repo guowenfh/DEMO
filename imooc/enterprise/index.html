@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业布局实录</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- 轮播图依赖 -->
+    <script src="js/myfocus-2.0.1.min.js"></script>
+    <script src="js/mF_fancy.js"></script>
+    <link rel="stylesheet" href="css/mF_fancy.css">
+    <!-- 轮播图依赖结束 -->
+    <script>
+    window.onload=function (){
+        //调用轮播组件
+        myFocus.set({
+            id:"carousel-figure"
+        });
+    };
+    </script>
+</head>
+<body>
+<!-- 最外层容器 -->
+<div class="main">
+    <!--顶部灰色条  -->
+    <div class="top"></div>
+    <!-- 整体宽度控制 -->
+    <div class="warp">
+    <!-- 头部开始 -->
+        <header class="header clearfix">
+            <img class="header-logo" src="img/logo.jpg" height="70" width="200" alt="慕课网">
+            <!-- 头部导航 -->
+            <ul class="header-nav clearfix">
+                <li class="active"><a href="#">产品</a></li>
+                <li><a href="#">产品特色</a></li>
+                <li><a href="#">解决方案</a></li>
+                <li><a href="#">产品价格</a></li>
+                <li><a href="#">帮助中心</a></li>
+                <li><a href="#">关于我们</a></li>
+            </ul>
+            <!-- 顶部导航结束 -->
+        </header>
+        <!-- 头部结束 -->
+        <!-- 轮播图开始 -->
+        <div id = "carousel-figure">
+            <div class="loading">
+                <img src="img/loading.gif" height="95" width="156" alt="正在加载图片">
+                <!-- 轮播组件的问题，都要延迟一点时间 -->
+            </div>
+            <div  class="pic">
+                <ul>
+                    <li><img src="img/ad2.jpg" height="310" width="1000" alt=""></li>
+                    <li><img src="img/ad3.jpg" height="310" width="1000" alt=""></li>
+                    <li><img src="img/ad4.jpg" height="310" width="1000" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 轮播结束 -->
+        <!-- 滚动新闻开始 -->
+        <div class="news clearfix">
+            <div class="news-left">滚动新闻</div>
+            <div class="news-right">这里是滚动新闻</div>
+        </div>
+        <!-- 滚动新闻结束 -->
+        <!--  课程展示开始-->
+        <div class = "class-info">
+            <div>
+                <img src="img/bs.jpg" height="130" width="330" alt="">
+                <h2>玩转BootStrap</h2>
+            </div>
+            <div>
+                <img src="img/css.jpg" height="130" width="330" alt="">
+                <h2>企业网站布局实录</h2>
+            </div>
+            <div>
+                <img src="img/js.jpg" height="130" width="330" alt="">
+                <h2>JavaScript基础</h2>
+            </div>
+        </div>
+        <!-- 课程展示结束 -->
+        <!-- 综合信息提示 -->
+        <div class="general clearfix">
+        <!--  左侧栏-->
+            <div class="news-center">
+                <h3>新闻中心</h3>
+                <div class="news-column clearfix">
+                    <span>8月<br>23日</span>
+                    <div class="news-center-title ">
+                        <strong>学习计划之“Android攻城狮初养成”</strong>
+                        <p>想成为Android攻城狮？想开发一款专属App？没有任何基础的你，应该从何学起？</p>
+                    </div>
+                </div>
+                <div class="news-column clearfix">
+                    <span>8月<br>24日</span>
+                    <div class="news-center-title">
+                        <strong>学习计划之“Android攻城狮初养成”</strong>
+                        <p>想成为Android攻城狮？想开发一款专属App？没有任何基础的你，应该从何学起？</p>
+                    </div>
+                </div>
+                <div class="news-column clearfix">
+                    <span>8月<br>25日</span>
+                    <div class="news-center-title">
+                        <strong>学习计划之“Android攻城狮初养成”</strong>
+                        <p>想成为Android攻城狮？想开发一款专属App？没有任何基础的你，应该从何学起？</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 左侧栏结束 -->
+            <!-- 中间部分 -->
+            <div class="hot-activity">
+                <h3>热门活动</h3>
+                <div>
+                <img src="img/2048.jpg" height="120" width="282" alt="2048">
+                    <p>慕课网2048游戏源码征集</p>
+                    <p>慕课网2048游戏源码征集</p>
+                    <p>慕课网2048游戏源码征集</p>
+                    <p>慕课网2048游戏源码征集</p>
+                    <p>慕课网2048游戏源码征集</p>
+                </div>
+            </div>
+            <!-- 中间部分结束 -->
+            <!-- 右侧栏 -->
+            <div class="contact-us">
+                <h3>联系我们</h3>
+                <div>
+                    讲师招募<br>
+                    陈同学<br>
+                    电话：1234567890<br>
+                    QQ：277383797<br>
+                    E-mail：guowen921@163.com
+                </div>
+                <div>
+                    网站合作<br>
+                    吕同学<br>
+                    电话：1234567890<br>
+                    QQ：277383797<br>
+                    E-mail：guowen921@163.com
+                </div>
+            </div>
+            <!-- 右侧栏结束 -->
+        </div>
+        <!-- 信息提示结束 -->
+    </div>
+    <!-- 整体宽度结束 -->
+    <!-- 底部版权信息 -->
+        <footer class="copyright">
+            Copyright © 2016 imooc.com All Rights Reserved 京ICP备 13046642号-2
+        </footer>
+        <!-- 底部版权信息结束 -->
+</div>
+<!-- 最外层容器 -->
+</body>
+</html>
