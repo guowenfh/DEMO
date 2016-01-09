@@ -479,7 +479,7 @@ myReady(function () {
     var environmentUl = getByClassName(environment, "environment-ul")[0];
     var environmentLi = environmentUl.getElementsByTagName("li");
     var environmentTimer = null;
-    var environmentSpeed = 2;
+    var environmentSpeed = 1;
     environmentUl.innerHTML += environmentUl.innerHTML;
     environmentUl.style.width = environmentLi.length * environmentLi[0].offsetWidth + "px";
 
@@ -489,7 +489,7 @@ myReady(function () {
             environmentUl.style.left = 0;
         }
     }
-    environmentTimer = setInterval(ulMove, 20);
+    environmentTimer = setInterval(ulMove, 10);
     myAddEvent(environment, "mouseover", function () {
         clearInterval(environmentTimer);
     });
