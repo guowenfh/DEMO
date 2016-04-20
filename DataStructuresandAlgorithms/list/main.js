@@ -21,11 +21,14 @@ List.prototype.getElement = function (index) {
 List.prototype.insert = function(){
     
 };
-
-List.prototype.append = function(){
-    this.dataStore.push();
+//在列表的末尾添加新元素
+List.prototype.append = function(element){
+    this.dataStore[listSize++] = element;
 };
-
+//从列表中删除元素
+List.prototype.remove = function(){
+    
+}
 var aa = new List();
 aa.dataStore = [123,324];
 // console.info(aa.listSize());
