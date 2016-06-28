@@ -1,25 +1,6 @@
 /*css重置*/
 
-html
-,body
-,ol
-,li
-,p
-,h1
-,h2
-,h3
-,h4
-,form
-,table
-,td
-,img
-,div
-,i
-,em
-,span
-,ul
-,input
-,video {
+html, body, ol, li, p, h1, h2, h3, h4, form, table, td, img, div, i, em, span, ul, input, video {
     margin: 0;
     padding: 0;
     /*box-sizing*/
@@ -37,8 +18,7 @@ img {
     border: none;
 }
 
-ul,
-li {
+ul, li {
     list-style: none;
 }
 
@@ -70,18 +50,18 @@ body {
 
 
 /*整体宽度控制*/
+
 .container {
     overflow: hidden;
     max-width: 1615px;
     margin: 0 auto;
 }
+
 .wrap {
     width: 1200px;
     margin: 0 auto;
     position: relative;
 }
-
-
 
 
 /*引入字体图标*/
@@ -147,8 +127,7 @@ body {
 
 /*登录层开始*/
 
-.login-wrap
-,.moive-wrap {
+.login-wrap, .moive-wrap {
     z-index: 9999;
     position: fixed;
     left: 0;
@@ -175,8 +154,7 @@ body {
     background-color: #fff;
 }
 
-#login-close
-,#moive-close {
+#login-close, #moive-close {
     font-size: 14px;
     position: absolute;
     right: 8px;
@@ -199,8 +177,7 @@ body {
     font-size: 16px;
 }
 
-#login-form input
-,#login-form .login-btn {
+#login-form input, #login-form .login-btn {
     height: 45px;
     width: 295px;
     line-height: 45px;
@@ -422,6 +399,7 @@ body {
     height: 460px;
     width: 1615px;
 }
+
 .Slideshow-nav {
     padding: 0;
     position: absolute;
@@ -432,7 +410,7 @@ body {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
-    transform: translateX(-50%);: ;
+    transform: translateX(-50%);
 }
 
 .Slideshow-nav li {
@@ -445,7 +423,8 @@ body {
     background-color: #fff;
     cursor: pointer;
 }
-.Slideshow-nav li:first-child{
+
+.Slideshow-nav li:first-child {
     margin-left: 0;
 }
 
@@ -567,6 +546,8 @@ body {
     width: 323px;
     height: 220px;
 }
+
+
 /*生活环境结束*/
 
 
@@ -663,8 +644,7 @@ body {
     margin-bottom: 8px;
 }
 
-.describe p,
-.describe div {
+.describe p, .describe div {
     color: #999;
     margin-bottom: 6px;
 }
@@ -759,8 +739,7 @@ body {
     margin-right: 5px;
 }
 
-.describe-hover div,
-.describe-hover p {
+.describe-hover div, .describe-hover p {
     color: #656565;
     font-size: 12px;
     height: 20px;
@@ -781,14 +760,16 @@ body {
     padding: 23px 30px 0 20px;
     overflow: hidden;
 }
+
 .description:after {
-    content:"...";
-    font-weight:bold;
-    position:absolute;
-    bottom:0;
-    right:0;
-    padding:0 20px 1px 45px;
+    content: "...";
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 20px 1px 45px;
 }
+
 
 /*课程列表主内容区结束*/
 
@@ -806,8 +787,7 @@ body {
     float: left;
 }
 
-.pagination i,
-.page-ul li {
+.pagination i, .page-ul li {
     float: left;
     height: 20px;
     line-height: 20px;
@@ -829,8 +809,7 @@ body {
     width: 30px;
 }
 
-.pagination i,
-.page-ul li:hover {
+.pagination i, .page-ul li:hover {
     background-color: #9DD7B1;
     color: #fff;
 }
@@ -862,8 +841,7 @@ body {
     margin-bottom: 20px;
 }
 
-.generalProfile h3,
-.ranking h3 {
+.generalProfile h3, .ranking h3 {
     padding-left: 20px;
     height: 55px;
     line-height: 55px;
@@ -901,8 +879,7 @@ body {
     background-color: #fff;
 }
 
-.generalProfile:hover,
-.ranking:hover {
+.generalProfile:hover, .ranking:hover {
     box-shadow: 1px 1px 3px #BBB;
 }
 
@@ -1005,8 +982,7 @@ body {
     margin-bottom: 10px;
 }
 
-.siteinfo p,
-.siteinfo a {
+.siteinfo p, .siteinfo a {
     height: 20px;
     line-height: 20px;
 }
@@ -1031,12 +1007,9 @@ body {
 /*页脚结束*/
 
 
-
-
 /*小屏幕自适应,媒体查询*/
 
 @media (max-width:1205px) {
-
     /*内容宽度控制*/
     .wrap {
         width: 960px;

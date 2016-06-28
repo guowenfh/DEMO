@@ -32,3 +32,4 @@ List.prototype.remove = function () {
 var aa = new List();
 aa.dataStore = [123, 324];
 // console.info(aa.listSize());
+//
