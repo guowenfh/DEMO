@@ -13,7 +13,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-
+javascriptBasis/test.html
 # Windows shortcuts
 *.lnk
 .vscode/
