@@ -131,3 +131,45 @@ var attrs3 = Object.getOwnPropertyNames(Person.prototype);
 //["constructor", "name", "age", "sayName"]，该方法可以枚举对象所有属性，不管该内部属性是否能被枚举，（constructor属性是不能被枚举的）
 ```
 
+
+### 使用原型扩展对象中的属性和方法
+
+#### 模拟array中的forEach方法，可处理嵌套数组
+
+```js
+var arr = [1, 2, 3, [4, [5, 6]]];
+arr.forEach(function(item, index, arrary) {
+    console.info(item)
+})
+Array.prototype.each = function(fn) {
+    try {
+        //1.目的，变量数组的每一项，计数器 记录当前遍历的元素位置
+        this.i || (this.i = 0); //var i = 0;
+        // 当数组长度大于0的时候，&& 传递的参数必须为函数
+        if (this.length > 0 && fn.constructor == Function) {
+            //循环遍历数组的每一项
+            while (this.i < this.length) { //while循环的范围
+                //获取到数组的每一项
+                var item = this[this.i];
+                if (item && item.constructor == Array) {
+                    // 执行递归操作
+                    item.each(fn)
+                } else {
+                    // 如果不是数组（那就是一个单独的元素）
+                    // 这里的目标就是为了把数组的当前原声传递给fn函数，并且让函数执行
+                    // fn.apply(item, [item]);
+                    fn.call(item, item);
+                }
+                this.i++
+            }
+            this.i = null; //释放内存，垃圾回收机制回收变量
+        }
+    } catch (ex) {
+        // 做些什么
+    }
+    return this;
+}
+arr.each(function(item) {
+    console.info(item)
+})
+```
