@@ -107,6 +107,7 @@ console.info(Person.prototype.constructor);//function Person() {}
 3. Options配置项
 
 将`constructor:Person`删掉，我们来试试这个新方法
+
 ```js
 Object.defineProperty(Person.prototype, 'constructor', {
     enumerable: false,
