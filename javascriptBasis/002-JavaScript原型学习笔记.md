@@ -1,5 +1,7 @@
 ## 原型 prototype
 
+在每一个函数呗创建时，都会有一个`prototype`属性。这个属性
+
 先来看一段代码：
 ```js
 function Person(name, age) {
