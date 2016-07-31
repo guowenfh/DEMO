@@ -5,26 +5,7 @@
 
 ### 类的概念
 
-- 工厂模型
 
-```js
-function createPerson(name, age, sex) {
-    var obj = {};
-    obj.name = name;
-    obj.age = age;
-    obj.sex = sex;
-    obj.sayName = function(){
-        console.info(this.name)
-    }
-    return obj;
-}
-var p1 = createPerson("小红",21,"女")
-var p2 = createPerson("小国",22,"男")
-console.info(p1.name);//小红
-console.info(p2.age);//22
-p2.sayName();//小国
-```
-这就是一个简单的工厂规模型，我们通过一个模板函数可以快速的创建多个相同类别的对象。在JavaScript中函数也是对象，所以我们使用的更多的是另外一种方式-->构造函数
 
 - 构造函数
 
