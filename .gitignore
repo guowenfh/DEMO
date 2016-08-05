@@ -1,7 +1,7 @@
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
-
+jsconfig.json
 # Folder config file
 Desktop.ini
 
@@ -16,7 +16,6 @@ $RECYCLE.BIN/
 javascriptBasis/test.html
 # Windows shortcuts
 *.lnk
-.vscode/
 # =========================
 # Operating System Files
 # =========================
@@ -24,6 +23,8 @@ javascriptBasis/test.html
 # OSX
 # =========================
 .idea/
+.vscode/
+
 .DS_Store
 .AppleDouble
 .LSOverride

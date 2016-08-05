@@ -53,26 +53,86 @@ List.prototype.remove = function (element) {
     }
 };
 // 将列表的当前位置设移动到第一个元素
-List.prototype.front = function (index) {
-    
+List.prototype.front = function (element) {
+    var isElement = false;
+    var foundAt = this.find(element);
+    if (foundAt > -1) {
+        this.dataStore.splice(foundAt, 1);
+        isElement = true;
+    }
+    if (isElement) {
+        this.dataStore.unshift(element);
+        return true;
+    } else {
+        return true;
+    }
 };
 // 将列表的当前位置移动到最后一个元素
-List.prototype.end = function () {
-
+List.prototype.end = function (element) {
+    var isElement = false;
+    var foundAt = this.find(element);
+    if (foundAt > -1 && this.dataStore.length !== 1) {
+        this.dataStore.splice(foundAt, 1);
+        isElement = true;
+    }
+    if (isElement) {
+        this.dataStore.push(element);
+        return true;
+    } else {
+        return false;
+    }
 };
 // 将当前位置后移一位
-List.prototype.prev = function () {
-
+List.prototype.prev = function (element) {
+    var isElement = false;
+    var foundAt = this.find(element);
+    if (foundAt > 0) {
+        this.dataStore.splice(foundAt, 1);
+        isElement = true;
+    }
+    if (isElement) {
+        this.dataStore.splice(foundAt, 1, element);
+        this.dataStore.splice(foundAt + 1, 0, element);
+        return true;
+    } else {
+        return false;
+    }
 };
 // 将当前位置前移一位
 List.prototype.next = function () {
-
+    var isElement = false;
+    var foundAt = this.find(element);
+    if (foundAt > 0) {
+        this.dataStore.splice(foundAt, 1);
+        isElement = true;
+        return true;
+    }
+    if (isElement) {
+        this.dataStore.splice(foundAt, 1, element);
+        this.dataStore.splice(foundAt - 1, 0, element);
+        return true;
+    } else {
+        return false;
+    }
 };
 // 返回列表的当前位置
-List.prototype.currPos = function () {
-
+List.prototype.currPos = function (element) {
+    return this.find(element);
 };
 // 将当前位置移动到指定位置
-List.prototype.moveTo = function () {
+List.prototype.moveTo = function (element, index) {
+    var foundAt = this.find(element);
+    var isElement = false;
+    var length = this.dataStore.length;
+    if (foundAt > 0) {
+        this.dataStore.splice(foundAt, 1);
+        isElement = true;
+        if (length !== 0 && index >= 0 && index <= length) {
+             this.dataStore.splice(index,0,index)
+            return true;
+        }
+    }else{
+        return false;
+    }
 
 };
