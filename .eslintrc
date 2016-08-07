@@ -1,7 +1,6 @@
 {
-    // 环境定义了预定义的全局变量。
+    //环境定义了预定义的全局变量。更多在官网查看
     "env": {
-        //环境定义了预定义的全局变量。更多在官网查看
         "browser": true,
         "node": true,
         "commonjs": true,
@@ -9,14 +8,20 @@
         "es6":true,
         "mocha":true
     },
-    // 想使用的额外的语言特性:
-    "ecmaFeatures": {
-        // 允许在全局作用域下使用 return 语句
-        "globalReturn":true,
-        // impliedStric
-        "impliedStrict":true,
-        // 启用 JSX
-        "jsx":true
+    // JavaScript 语言选项
+    "parserOptions": {
+        // ECMAScript 版本
+        "ecmaVersion": 6,
+        "sourceType": "script",//module
+        // 想使用的额外的语言特性:
+        "ecmaFeatures": {
+            // 允许在全局作用域下使用 return 语句
+            "globalReturn":true,
+            // impliedStric
+            "impliedStrict":true,
+            // 启用 JSX
+            "jsx":true
+        }
     },
     /**
      *  "off" 或 0 - 关闭规则
@@ -26,7 +31,7 @@
     "rules": {
 
         ////////////////
-        // 可能的错误  //
+        // 可能的错误 //
         ////////////////
 
         // 禁止条件表达式中出现赋值操作符
@@ -86,8 +91,8 @@
         // 禁止在return、throw、continue 和 break语句之后出现不可达代码
         /*
             function foo() {
-            return true;
-            console.log("done");
+                return true;
+                console.log("done");
             }//错误
         */
         "no-unreachable": 2,
@@ -99,7 +104,7 @@
         // typeof foo === "undefimed" 错误
         "valid-typeof": 2,
 
-        
+
         //////////////
         // 最佳实践 //
         //////////////
@@ -135,7 +140,7 @@
         "no-alert": 0,
         // 禁用 arguments.caller 或 arguments.callee
         "no-caller": 2,
-        // 不允许在 case 子句中使用词法声明 
+        // 不允许在 case 子句中使用词法声明
         "no-case-declarations":2,
         // 禁止除法操作符显式的出现在正则表达式开始的位置
         "no-div-regex": 2,
@@ -177,7 +182,7 @@
         "no-loop-func":1,
         // 禁用魔术数字(3.14什么的用常量代替)
         "no-magic-numbers":[1,{ "ignore": [0,-1,1] }],
-        // 禁止使用多个空格 
+        // 禁止使用多个空格
         "no-multi-spaces": 2,
         // 禁止使用多行字符串，在 JavaScript 中，可以在新行之前使用斜线创建多行字符串
         "no-multi-str": 2,
@@ -189,7 +194,7 @@
         "no-new-func": 0,
         // 禁止对 String，Number 和 Boolean 使用 new 操作符
         "no-new-wrappers": 2,
-        // 禁用八进制字面量 
+        // 禁用八进制字面量
         "no-octal": 2,
         // 禁止在字符串中使用八进制转义序列
         "no-octal-escape": 2,
@@ -197,10 +202,10 @@
         "no-param-reassign": 0,
         // 禁用 __proto__ 属性
         "no-proto": 2,
-        // 禁止使用 var 多次声明同一变量 
+        // 禁止使用 var 多次声明同一变量
         "no-redeclare": 2,
         // 禁用指定的通过 require 加载的模块
-        "no-return-assign": 0,    
+        "no-return-assign": 0,
         // 禁止使用 javascript: url
         "no-script-url": 0,
         // 禁止自我赋值
@@ -215,7 +220,7 @@
         "no-unmodified-loop-condition":2,
         // 禁止出现未使用过的表达式
         "no-unused-expressions": 0,
-        // 禁用未使用过的标签 
+        // 禁用未使用过的标签
         "no-unused-labels":2,
         // 禁止不必要的 .call() 和 .apply()
         "no-useless-call":2,
@@ -239,8 +244,8 @@
         "yoda": [2, "never"],
         // 要求或禁止使用严格模式指令
         "strict": 0,
-        
-        
+
+
         //////////////
         //  变量声明 //
         //////////////
@@ -341,7 +346,7 @@
         "id-length":0,
         // 要求标识符匹配一个指定的正则表达式
         "id-match":0,
-        // 强制在 JSX 属性中一致地使用双引号或单引号 
+        // 强制在 JSX 属性中一致地使用双引号或单引号
         "jsx-quotes":0,
         // 强制在关键字前后使用一致的空格 (前后腰需要)
         "keyword-spacing":2,
@@ -377,7 +382,7 @@
         "no-lonely-if": 0,
         // 禁止混合使用不同的操作符
         "no-mixed-operators":0,
-        // 不允许空格和 tab 混合缩进 
+        // 不允许空格和 tab 混合缩进
         "no-mixed-spaces-and-tabs": 2,
         // 不允许多个空行
         "no-multiple-empty-lines": [2, { "max": 2 }],
@@ -421,7 +426,7 @@
         "padded-blocks": 0,
         // 要求对象字面量属性名称用引号括起来
         "quote-props": 0,
-        // 强制使用一致的反勾号、双引号或单引号 
+        // 强制使用一致的反勾号、双引号或单引号
         "quotes": [2, "single", "avoid-escape"],
         // 要求使用 JSDoc 注释
         "require-jsdoc":1,
@@ -434,20 +439,20 @@
         // 强制在块之前使用一致的空格
         "space-before-blocks": [2, "always"],
         // 强制在 function的左括号之前使用一致的空格
-        "space-before-function-paren": [2, "always"],  
+        "space-before-function-paren": [2, "always"],
         // 强制在圆括号内使用一致的空格
         "space-in-parens": [2, "never"],
         // 要求操作符周围有空格
         "space-infix-ops": 2,
-        // 强制在一元操作符前后使用一致的空格 
+        // 强制在一元操作符前后使用一致的空格
         "space-unary-ops": [2, { "words": true, "nonwords": false }],
         // 强制在注释中 // 或 /* 使用一致的空格
         "spaced-comment": [2, "always", { "markers": ["global", "globals", "eslint", "eslint-disable", "*package", "!"] }],
-        // 要求或禁止 Unicode BOM 
+        // 要求或禁止 Unicode BOM
         "unicode-bom": 0,
         //  要求正则表达式被括号括起来
         "wrap-regex": 0,
-        
+
         //////////////
         // ES6.相关 //
         //////////////
@@ -461,13 +466,13 @@
         "constructor-super": 0,
         // 强制 generator 函数中 * 号周围使用一致的空格
         "generator-star-spacing": [2, { "before": true, "after": true }],
-        // 禁止修改类声明的变量 
+        // 禁止修改类声明的变量
         "no-class-assign":2,
         // 不允许箭头功能，在那里他们可以混淆的比较
         "no-confusing-arrow":0,
         // 禁止修改 const 声明的变量
         "no-const-assign":2,
-        // 禁止类成员中出现重复的名称 
+        // 禁止类成员中出现重复的名称
         "no-dupe-class-members":2,
         // 不允许复制模块的进口
         "no-duplicate-imports":0,
@@ -501,7 +506,7 @@
         "rest-spread-spacing":0,
         // 强制模块内的 import 排序
         "sort-imports":0,
-        // 要求或禁止模板字符串中的嵌入表达式周围空格的使用 
+        // 要求或禁止模板字符串中的嵌入表达式周围空格的使用
         "template-curly-spacing":1,
         // 强制在 yield* 表达式中 * 周围使用空格
         "yield-star-spacing":2

@@ -1,7 +1,8 @@
 'use strict';
 
 /**
- * 
+ * 创建列表
+ *  @return {[type]} [description]
  */
 function List () {
     this.listSize = 0;
@@ -29,10 +30,11 @@ List.prototype.getElement = function (index) {
     return this.dataStore[index];
 };
 // 在现有元素后插入新元素
-List.prototype.insert = function () {
-
+List.prototype.insert = function (index) {
+    return this.dataStore[index];
 };
 // 在列表的末尾添加新元素
+
 List.prototype.append = function (element) {
     this.dataStore[this.listSize++] = element;
 };
@@ -104,7 +106,7 @@ List.prototype.prev = function (element) {
     }
 };
 // 将当前位置前移一位
-List.prototype.next = function () {
+List.prototype.next = function (element) {
     var isElement = false;
     var foundAt = this.find(element);
     if (foundAt > 0) {
@@ -126,17 +128,17 @@ List.prototype.currPos = function (element) {
 };
 // 将当前位置移动到指定位置
 List.prototype.moveTo = function (element, index) {
-    var foundAt = this.find(element);
     var isElement = false;
+    var foundAt = this.find(element);
     var length = this.dataStore.length;
     if (foundAt > 0) {
         this.dataStore.splice(foundAt, 1);
         isElement = true;
-        if (length !== 0 && index >= 0 && index <= length) {
+        if (isElement && length !== 0 && index >= 0 && index <= length) {
             this.dataStore.splice(index, 0, index);
             return true;
         }
-    } else{
+    } else {
         return false;
     }
 
