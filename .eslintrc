@@ -405,7 +405,7 @@
         // 禁止标识符中有悬空下划线_bar
         "no-underscore-dangle": 0,
         // 禁止可以在有更简单的可替代的表达式时使用三元操作符
-        "no-unneeded-ternary": 2,
+        "no-unneeded-ternary": 0,
         // 禁止属性前有空白
         "no-whitespace-before-property": 0,
         // 强制花括号内换行符的一致性
@@ -512,4 +512,3 @@
         "yield-star-spacing": 2
     }
 }
-

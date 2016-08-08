@@ -52,3 +52,4 @@ gulp.task('default', ['browser-sync'], function() {
     console.info('－－－－－－');
     console.info('执行浏览器同步刷新');
 });
+
