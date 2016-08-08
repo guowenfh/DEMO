@@ -1,0 +1,27 @@
+{
+    "name": "demo",
+    "version": "1.0.0",
+    "description": "一些有意思的demo+网易大作业",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/guowenfh/DEMO.git"
+    },
+    "author": "guowenfh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/guowenfh/DEMO/issues"
+    },
+    "homepage": "https://github.com/guowenfh/DEMO#readme",
+    "devDependencies": {
+        "browser-sync": "^2.14.0",
+        "gulp": "^3.9.1",
+        "gulp-eslint": "^3.0.1",
+        "gulp-load-plugins": "^1.2.4",
+        "gulp-uglify": "^2.0.0",
+        "gulp-watch": "^4.3.9"
+    }
+}

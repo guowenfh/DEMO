@@ -24,7 +24,7 @@ javascriptBasis/test.html
 # =========================
 .idea/
 .vscode/
-
+node_modules/
 .DS_Store
 .AppleDouble
 .LSOverride
