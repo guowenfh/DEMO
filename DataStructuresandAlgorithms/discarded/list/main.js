@@ -167,3 +167,19 @@ List.prototype.getElement = function() {
     return this.dataStore[this.pos];
 };
 
+var names = new List();
+names.append("Clayton");
+names.append("Raymond");
+names.append("Cynthia");
+names.append("Jennifer");
+names.append("Bryan");
+names.append("Danny");
+names.front();
+console.info(names.getElement());// Clayton
+names.next();
+console.info(names.getElement());// Clayton
+names.next();
+names.next();
+names.prev();
+console.info(names.toString());
+console.info(names.getElement()); // 显示Cynthia
