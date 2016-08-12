@@ -43,7 +43,7 @@ gulp.task('browser-sync', function() {
 
     browserSync.init(files, {
         server: {
-            baseDir: browser + 'Strack/',
+            baseDir: browser + 'Stack/',
         },
     });
 });
@@ -52,3 +52,4 @@ gulp.task('default', ['browser-sync'], function() {
     console.info('－－－－－－');
     console.info('执行浏览器同步刷新');
 });
+
