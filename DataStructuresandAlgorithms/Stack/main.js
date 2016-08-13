@@ -16,8 +16,7 @@
     };
 
     /**
-     *
-     *  从栈的顶部移除一个元素
+     *  从栈的顶部移除一个元素（最后一个）
      * @returns {any} 被弹出的元素
      */
     Stack.prototype.pop = function() {
@@ -25,7 +24,6 @@
     };
 
     /**
-     *
      * 拿到栈的最后一个元素
      * @returns {any} 栈里最后一个元素
      */
@@ -34,9 +32,8 @@
     };
 
     /**
-     *
      * 判断当前栈是否为空
-     * @returns {boolean} 空为false
+     * @returns {boolean} 空为true
      */
     Stack.prototype.isEmpty = function() {
         return this.items.length === 0;
@@ -50,7 +47,6 @@
     };
 
     /**
-     *
      * 拿到栈中元素的个数
      * @returns {number} 栈的长度
      */
