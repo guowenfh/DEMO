@@ -70,14 +70,32 @@
 
     /**
      * 10进制转化成其它进制
-     * @param {number} number 待转化的数字
+     * @param {number} decNumber 待转化的数字
      * @param {number} base 转化成几进制
-     * @returns {number} baseString 转化后的值
+     * @returns {String} baseString 转化后对应进制的值
      */
-    function baseConverter(number, base) {
+    function baseConverter(decNumber, base) {
+        base = base || 2; // 默认2进制
+        var remStack = new Stack();
+        var rem;
         var baseString = '';
+        var digits = '0123456789ABCDEF';
+        while (decNumber > 0) {
+            rem = Math.floor(decNumber % base); // 获得当前结果和2的余数, 放到栈里
+            remStack.push(rem);
+            decNumber = Math.floor(decNumber / base); // 然后让结果和2做整除,使用Math.floor函数让除法的操作仅返回整 数部分
+        }
+        while (!remStack.isEmpty()) {
+            // baseString += remStack.pop().toString(); // 用pop方法把栈中的元素都移除,把出栈的元素变成连接成字符串
+            baseString += digits[remStack.pop()]; // 对栈中的数字做个转化，主要是16进制
+        }
         return baseString;
     }
+    // console.info(baseConverter(233, 2)); // 输出11101001
+    // console.info(baseConverter(10, 2)); // 输出1010
+    // console.info(baseConverter(1000, 2)); // 输出1111101000
+    // console.log(baseConverter(100345, 2)); // 出11000011111111001
+    // console.log(baseConverter(100345, 8)); // 输出303771
+    console.log(baseConverter(100345, 16)); // 输出187F9
 
 })();
-
