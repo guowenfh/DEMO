@@ -9,17 +9,32 @@
 <body>
     <script src="main.js"></script>
     <script>
-        var queue = new Queue();
-        console.log(queue.isEmpty()); //输出true
-        queue.enqueue("John");
-        queue.enqueue("Jack");
-        queue.enqueue("Camila");
-        queue.print();
-        console.log(queue.size()); //输出3
-        console.log(queue.isEmpty()); //输出false
-        queue.dequeue();
-        queue.dequeue();
-        queue.print();
+        // 普通队列
+        // var queue = new Queue();
+        // console.log(queue.isEmpty()); //输出true
+        // queue.enqueue("John");
+        // queue.enqueue("Jack");
+        // queue.enqueue("Camila");
+        // queue.print();
+        // console.log(queue.size()); //输出3
+        // console.log(queue.isEmpty()); //输出false
+        // queue.dequeue();
+        // queue.dequeue();
+        // queue.print();
+
+
+        // 优先队列
+
+        var priorityQueue = new PriorityQueue();
+        priorityQueue.enqueue("John", 2);
+        priorityQueue.enqueue("Jack", 1);
+        priorityQueue.enqueue("Camila", 1);
+        priorityQueue.enqueue("jjjj", 1);
+        priorityQueue.print();
+        // QueueElement {element: "Jack", priority: 1}
+        // QueueElement {element: "Camila", priority: 1}
+        // QueueElement {element: "jjjj", priority: 1}
+        // QueueElement {element: "John", priority: 2}
     </script>
 </body>
 
