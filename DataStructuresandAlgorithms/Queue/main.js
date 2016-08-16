@@ -60,7 +60,6 @@
     Queue.prototype.print = function() {
         console.log(this.items.toString());
     };
-    window.Queue = Queue;
 
     /**
      *  创建一个最小优先队列，优先级的值较小的元素被放置在队列最前面
@@ -147,5 +146,30 @@
         });
     };
 
+
+    window.Queue = Queue;
     window.PriorityQueue = PriorityQueue;
+
+    /**
+     * 循环队列－－击鼓传花
+     * @param {Array} nameList 参加列表
+     * @param {Number} num 传递次数
+     * @returns {String} 胜者
+     */
+    function hotPotato(nameList, num) {
+        var queue = new Queue(); // {1}
+        for (var i = 0; i < nameList.length; i++) {
+            queue.enqueue(nameList[i]); // {2}
+        }
+        var eliminated = '';
+        while (queue.size() > 1) {
+            for (var i = 0; i < num; i++) {
+                queue.enqueue(queue.dequeue()); // {3}
+            }
+            eliminated = queue.dequeue(); // {4}
+            console.info(eliminated + '在击鼓传花游戏中被淘汰。');
+        }
+        return queue.dequeue(); // {5}
+    }
+    window.hotPotato = hotPotato;
 })(window);
