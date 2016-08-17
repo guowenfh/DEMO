@@ -1,4 +1,4 @@
-(function(window) {
+(function() {
 
     /**
      * 创建一个队列
@@ -146,10 +146,6 @@
         });
     };
 
-
-    window.Queue = Queue;
-    window.PriorityQueue = PriorityQueue;
-
     /**
      * 循环队列－－击鼓传花
      * @param {Array} nameList 参加列表
@@ -171,5 +167,35 @@
         }
         return queue.dequeue(); // {5}
     }
-    window.hotPotato = hotPotato;
-})(window);
+
+
+    // 普通队列
+    // var queue = new Queue();
+    // console.log(queue.isEmpty()); //输出true
+    // queue.enqueue("John");
+    // queue.enqueue("Jack");
+    // queue.enqueue("Camila");
+    // queue.print();
+    // console.log(queue.size()); //输出3
+    // console.log(queue.isEmpty()); //输出false
+    // queue.dequeue();
+    // queue.dequeue();
+    // queue.print();
+
+
+    // 优先队列
+
+    var priorityQueue = new PriorityQueue();
+    priorityQueue.enqueue("John", 2);
+    priorityQueue.enqueue("Jack", 1);
+    priorityQueue.enqueue("Camila", 1);
+    priorityQueue.enqueue("jjjj", 1);
+    priorityQueue.print();
+    // QueueElement {element: "Jack", priority: 1}
+    // QueueElement {element: "Camila", priority: 1}
+    // QueueElement {element: "jjjj", priority: 1}
+    // QueueElement {element: "John", priority: 2}
+    var names = ['John', 'Jack', 'Camila', 'Ingrid', 'Carl'];
+    var winner = hotPotato(names, 1);
+    console.log('胜利者：' + winner);
+})();

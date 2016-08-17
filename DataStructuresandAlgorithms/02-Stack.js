@@ -61,9 +61,6 @@
         console.log(this.items.toString());
     };
 
-    window.Stack = Stack;
-
-
     /**
      * 10进制转化成其它进制
      * @param {number} decNumber 待转化的数字
@@ -94,4 +91,17 @@
     // console.log(baseConverter(100345, 8)); // 输出303771
     console.log(baseConverter(100345, 16)); // 输出187F9
 
+    // var stack = new Stack();
+    // console.info(stack.isEmpty())
+    // stack.push(5);
+    // stack.push(8);
+    // console.info(stack.peek())
+    // stack.push(11);
+    // console.log(stack.size()); //输出3
+    // console.log(stack.isEmpty()); //输出false
+    // stack.push(15);
+    // stack.pop();
+    // stack.pop();
+    // console.log(stack.size()); //输出2
+    // stack.print(); //输出[5, 8]
 })();
