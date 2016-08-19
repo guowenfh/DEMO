@@ -4,9 +4,9 @@
 function LinkedList() {
 
     /**
-     *
-     *
-     * @param {any} element
+     * 链表辅助类，表示要加入列的项
+     * @param {any} element 添加到列表的值
+     * @param {any} next 指向列表中下一个节点项的指针
      */
     var Node = function(element) {
         this.element = element;
@@ -21,7 +21,20 @@ function LinkedList() {
      * @param {any} element 列表项
      */
     this.append = function(element) {
-        // do..
+        var node = new Node(element);
+        var current;
+        if (head === null) { // 列表中的第一个节点
+            head = node;
+        } else {
+            current = head;
+            // 循环列表，直到找到最后一项
+            while (current.next) {
+                current = current.next;
+            }
+            // 找到最后一项，将其next 赋为node，建立链接
+            current.next = node;
+        }
+        length++; // 更新列表的长度
     };
 
     /**
@@ -36,9 +49,27 @@ function LinkedList() {
     /**
      * 从列表的特定位置移除一项
      * @param {any} position 移除位置
+     * @returns {any} 移除不成功返回null
      */
     this.removeAt = function(position) {
-        // do..
+        if (position > -1 && position < length) {
+            var current = head;
+            var previous;
+            var index = 0;
+            if (position === 0) {
+                head = current.next;
+            } else {
+                while (index++ < position) {
+                    previous = current;
+                    current = current.next;
+                }
+                previous.next = current.next;
+            }
+            length--;
+            return current.element;
+        } else {
+            return null;
+        }
     };
 
     /**
@@ -86,4 +117,3 @@ function LinkedList() {
         // do..
     };
 }
-
