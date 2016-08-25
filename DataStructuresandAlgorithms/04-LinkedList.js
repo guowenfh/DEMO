@@ -164,7 +164,16 @@ function LinkedList() {
     };
 }
 
+
+/**
+ * 双向链表
+ */
 function DoublyLinkedList() {
+
+    /**
+     * 链表辅助类，表示要加入列的项
+     * @param {any} element 添加到列表的值
+     */
     var Node = function(element) {
         this.element = element;
         this.next = null;
@@ -174,6 +183,14 @@ function DoublyLinkedList() {
     var head = null;
     var tail = null;
 
+
+    /**
+     *
+     * 向任务位置插入一个新元素的算法
+     * @param {any} position 位置
+     * @param {any} element 元素
+     * @returns {boolean} 成功返回true
+     */
     this.insert = function(position, element) {
         if (position >= 0 && position <= length) {
             var node = new Node(element);
@@ -213,6 +230,11 @@ function DoublyLinkedList() {
         }
     };
 
+    /**
+     * 从任意位置删除元素
+     * @param {any} position 位置
+     * @returns {any} 成功返回删除的元素，否则返回 null
+     */
     this.removeAt = function(position) {
         if (position > -1 && position < length) {
             var current = head;
@@ -244,4 +266,3 @@ function DoublyLinkedList() {
         }
     };
 }
-

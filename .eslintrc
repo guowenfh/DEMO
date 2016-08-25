@@ -332,7 +332,7 @@
         // 强制使用一致的换行风格
         "linebreak-style": [1, "unix"],
         // 要求在注释周围有空行      ( 要求在块级注释之前有一空行)
-        "lines-around-comment": [1, { "beforeBlockComment": true }],
+        "lines-around-comment": 0,
         //  强制一致地使用函数声明或函数表达式，方法定义风格，参数：
         //    declaration: 强制使用方法声明的方式，function f(){} e.g [2, "declaration"]
         //    expression：强制使用方法表达式的方式，var f = function() {}  e.g [2, "expression"]
