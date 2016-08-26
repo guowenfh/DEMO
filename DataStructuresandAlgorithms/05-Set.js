@@ -84,8 +84,8 @@ function Set() {
 
     /**
      * 并集
-     * @param {any} otherSet 待判断的集合
-     * @returns 返回合并过后的集合
+     * @param {any} otherSet 用来对比的集合
+     * @returns {any} 返回合并过后的集合
      */
     this.union = function(otherSet) {
         var unionSet = new Set();
@@ -99,10 +99,9 @@ function Set() {
 
 
     /**
-     *
-     *
-     * @param {any} otherSet
-     * @returns
+     * 交集
+     * @param {any} otherSet 用来对比的集合
+     * @returns {any} 两个集合共有的部分
      */
     this.intersection = function(otherSet) {
         var intersectionSet = new Set();
@@ -116,10 +115,9 @@ function Set() {
     };
 
     /**
-     *
-     *
-     * @param {any} otherSet
-     * @returns
+     * 差集
+     * @param {any} otherSet 用来对比的集合
+     * @returns {any} 对比后a独有的部分
      */
     this.difference = function(otherSet) {
         var differebceSet = new Set();
@@ -134,9 +132,9 @@ function Set() {
 
     /**
      *
-     *
-     * @param {any} otherSet
-     * @returns
+     * 子集
+     * @param {any} otherSet 用来对比的集合
+     * @returns {Boolean} 当对比集合每一个元素都存在当前集合中时，为true
      */
     this.subset = function(otherSet) {
         if (this.size() > otherSet.size()) {
@@ -152,17 +150,3 @@ function Set() {
         }
     };
 }
-
-var setA = new Set();
-setA.add(1);
-setA.add(2);
-var setB = new Set();
-setB.add(1);
-setB.add(2);
-setB.add(3);
-var setC = new Set();
-setC.add(2);
-setC.add(3);
-setC.add(4);
-console.log(setA.subset(setB));
-console.log(setA.subset(setC));

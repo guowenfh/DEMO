@@ -135,7 +135,7 @@
         // 使用 === 替代 == allow-null允许null和undefined==
         "eqeqeq": [2, "allow-null"],
         // 要求 for-in 循环中有一个 if 语句
-        "guard-for-in": 2,
+        "guard-for-in": 1,
         // 禁用 alert、confirm 和 prompt
         "no-alert": 0,
         // 禁用 arguments.caller 或 arguments.callee
@@ -325,7 +325,7 @@
         // 强制使用命名的 function 表达式
         "func-names": 0,
         // 文件末尾强制换行
-        "eol-last": 1,
+        "eol-last": 0,
         "indent": [2, 4, { "SwitchCase": 1 }],
         // 强制在对象字面量的属性中键和值之间使用一致的间距
         "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
