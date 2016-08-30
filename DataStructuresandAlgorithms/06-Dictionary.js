@@ -49,7 +49,7 @@ function Dictionary() {
      * @returns {arrary} 返回所有值的数组
      */
     this.values = function() {
-        var values = {};
+        var values = [];
         for (var k in items) {
             if (this.has(k)) {
                 values.push(items[k]);
@@ -83,5 +83,47 @@ function Dictionary() {
      */
     this.getItems = function() {
         return items;
+    };
+}
+// var dictionary = new Dictionary();
+// dictionary.set('Gandalf', 'gandalf@email.com');
+// dictionary.set('John', 'johnsnow@email.com');
+// dictionary.set('Tyrion', 'tyrion@email.com');
+// console.log(dictionary.has('Gandalf'));
+
+// console.log(dictionary.size());
+
+// console.log(dictionary.keys());
+// console.log(dictionary.values());
+// console.log(dictionary.get('Tyrion'));
+
+/**
+ *
+ */
+function hashTable() {
+    var table = [];
+
+    /**
+     * 向散列表增加一个新的项（也能更新散列表
+     * @param {any} key
+     * @param {any} value
+     */
+    this.put = function(key, value) {
+
+    };
+
+    /**
+     * 根据键值从散列表中移除值
+     * @param {any} key
+     */
+    this.remove = function(key) {
+
+    };
+    /**
+     * 返回根据键值检索到特定的值
+     * @param {any} key
+     */
+    this.get = function(key) {
+
     };
 }
