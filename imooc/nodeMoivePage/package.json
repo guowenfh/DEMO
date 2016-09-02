@@ -1,0 +1,20 @@
+{
+  "name": "node-moive-page",
+  "version": "1.0.0",
+  "description": "node,mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "mongodb"
+  ],
+  "author": "guwoenfh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "moment": "^2.14.1",
+    "mongoose": "^4.5.10"
+  }
+}
