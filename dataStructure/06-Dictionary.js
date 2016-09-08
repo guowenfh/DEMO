@@ -98,32 +98,67 @@ function Dictionary() {
 // console.log(dictionary.get('Tyrion'));
 
 /**
- *
+ * 散列表
  */
-function hashTable() {
+function HashTable() {
     var table = [];
 
+    var loseloseHashCode = function(key) {
+        var hash = 0;
+        for (var i = 0; i < key.length; i++) {
+            hash += key.charCodeAt(i);
+        }
+        return hash % 37;
+    };
     /**
      * 向散列表增加一个新的项（也能更新散列表
-     * @param {any} key
-     * @param {any} value
+     * @param {any} key 键
+     * @param {any} value 值
      */
     this.put = function(key, value) {
-
+        var position = loseloseHashCode(key);
+        console.log(position + '-' + key);
+        table[position] = value;
     };
 
-    /**
-     * 根据键值从散列表中移除值
-     * @param {any} key
-     */
-    this.remove = function(key) {
-
-    };
     /**
      * 返回根据键值检索到特定的值
-     * @param {any} key
+     * @param {any} key 键
+     * @return {any} 对应的值
      */
     this.get = function(key) {
+        return table[loseloseHashCode(key)];
+    };
+    /**
+     * 根据键值从散列表中移除值
+     * @param {any} key 键
+     */
+    this.remove = function(key) {
+        table[loseloseHashCode(key)] = undefined;
+    };
 
+    this.print = function() {
+        for (var i = 0; i < table.length; i++) {
+            if (table[i] !== undefined) {
+                console.log(i + ': ' + table[i]);
+            }
+        }
     };
 }
+
+var hash = new HashTable();
+hash.put('Gandalf', 'gandalf@email.com');
+hash.put('John', 'johnsnow@email.com');
+hash.put('Tyrion', 'tyrion@email.com');
+hash.put('Aaron', 'aaron@email.com');
+hash.put('Donnie', 'donnie@email.com');
+hash.put('Ana', 'ana@email.com');
+hash.put('Jonathan', 'jonathan@email.com');
+hash.put('Jamie', 'jamie@email.com');
+hash.put('Sue', 'sue@email.com');
+hash.put('Mindy', 'mindy@email.com');
+hash.put('Paul', 'paul@email.com');
+hash.put('Nathan', 'nathan@email.com');
+hash.print();
+
+// 分离链接，解决散列值相同的问题
