@@ -1,3 +1,4 @@
+var LinkedList = require('./04-LinkedList');
 /**
  * 字典类
  */
@@ -144,6 +145,26 @@ function HashTable() {
             }
         }
     };
+
+    /**
+     *  1.分离链接，解决散列值相同的问题
+     */
+    var ValuePair = function(key, value) {
+        this.key = key;
+        this.value = value;
+
+        this.toString = function() {
+            return '[' + this.key + ' - ' + this.value + ']';
+        };
+        this.put = function(key, value) {
+            var position = loseloseHashCode(key);
+            if (table[position] === undefined) {
+                table[position] = new LinkedList();
+            }
+            table[position].append(new ValuePair(key, value));
+        };
+    };
+
 }
 
 var hash = new HashTable();
@@ -161,4 +182,4 @@ hash.put('Paul', 'paul@email.com');
 hash.put('Nathan', 'nathan@email.com');
 hash.print();
 
-// 分离链接，解决散列值相同的问题
+console.info(new LinkedList());

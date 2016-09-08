@@ -266,3 +266,5 @@ function DoublyLinkedList() {
         }
     };
 }
+
+module.exports = LinkedList;
