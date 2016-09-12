@@ -163,6 +163,48 @@ function HashTable() {
             }
             table[position].append(new ValuePair(key, value));
         };
+        this.get = function(key) {
+            var position = loseloseHashCode(key);
+            if (table[position] !== undefined) {
+                var current = table[position].getHead();
+                while (current.next) {
+                    if (current.element.key === key) {
+                        return current.element.value;
+                    }
+                    current = current.next;
+                }
+                if (current.element.key === key) {
+                    return current.element.value;
+                }
+            }
+            return undefined;
+        };
+        this.remove = function(key) {
+            var position = loseloseHashCode(key);
+            if (table[position] !== undefined) {
+                var current = table[position].getHead();
+                while (current.next) {
+                    if (current.element.key === key) {
+                        table[position].remove(current.element);
+                        if (table[position].isEmpty()) {
+                            table[position] = undefined;
+                        }
+                        return true;
+                    }
+                    current = current.next;
+                }
+
+                if (current.element.key === key) {
+                    table[position].remove(current.element);
+                    if (table[position].isEmpty()) {
+                        table[position] = undefined;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        };
+
     };
 
 }
