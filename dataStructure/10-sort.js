@@ -7,9 +7,10 @@ function randomArr() {
     for (var i = 0; i < 15; i++) {
         arr.push(parseInt(Math.random() * 500, 10));
     }
-};
-console.log(arr);
+}
 randomArr();
+console.log(arr);
+
 /**
  * 冒泡排序
  * @param {array} array 待排序数组
@@ -32,6 +33,7 @@ var bubbleSort = function(array) {
 console.time('bubbleSort');
 console.error(bubbleSort(arr));
 console.timeEnd('bubbleSort');
+randomArr();
 
 // 2.选择排序
 /**
@@ -59,11 +61,10 @@ var selectionSort = function(array) {
     return array;
 };
 
-randomArr();
-
 console.time('selectionSort');
 console.error(selectionSort(arr));
 console.timeEnd('selectionSort');
+randomArr();
 
 // 3. 并归排序
 var merge = function(left, right) {
@@ -99,8 +100,61 @@ var mergeSort = function(arr) {
     arr = mergeSortRec(arr);
     return arr;
 };
-randomArr();
 
 console.time('mergeSort');
 console.error(mergeSort(arr));
 console.timeEnd('mergeSort');
+randomArr();
+
+
+
+var swapQuickSort = function(array, index1, index2) {
+    var aux = array[index1];
+    array[index1] = array[index2];
+    array[index2] = aux;
+};
+
+
+var partition = function(array, left, right) {
+    var pivot = array[Math.floor((right + left) / 2)],
+        i = left,
+        j = right;
+    while (i <= j) {
+        while (array[i] < pivot) {
+            i++;
+
+        }
+        while (array[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swapQuickSort(array, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    return i;
+
+};
+var quick = function(array, left, right) {
+    var index;
+    if (array.length > 1) {
+        index = partition(array, left, right);
+        if (left < index - 1) {
+            quick(array, left, index - 1);
+        }
+        if (index < right) {
+            quick(array, index, right);
+        }
+    }
+};
+
+var quickSort = function(array) {
+    array = quick(array, 0, array.length - 1);
+    return array;
+};
+console.time('quickSort');
+console.error(quickSort(arr));
+console.timeEnd('quickSort');
+randomArr();
