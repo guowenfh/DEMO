@@ -181,7 +181,7 @@
         // 禁止在循环中出现 function 声明和表达式
         "no-loop-func": 1,
         // 禁用魔术数字(3.14什么的用常量代替)
-        "no-magic-numbers": [1, { "ignore": [0, -1, 1] }],
+        "no-magic-numbers": [0, { "ignore": [0, -1, 1] }],
         // 禁止使用多个空格
         "no-multi-spaces": 2,
         // 禁止使用多行字符串，在 JavaScript 中，可以在新行之前使用斜线创建多行字符串
@@ -415,7 +415,7 @@
         // 强制将对象的属性放在不同的行上
         "object-property-newline": 0,
         // 强制函数中的变量要么一起声明要么分开声明
-        "one-var": [2, { "initialized": "never" }],
+        "one-var": [1, { "initialized": "never" }],
         // 要求或禁止在 var 声明周围换行
         "one-var-declaration-per-line": 0,
         // 要求或禁止在可能的情况下要求使用简化的赋值操作符

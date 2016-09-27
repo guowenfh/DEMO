@@ -2,18 +2,20 @@
 
 var arr = [];
 
-(function() {
-    for (var i = 0; i < 10; i++) {
+function randomArr() {
+    arr = [];
+    for (var i = 0; i < 15; i++) {
         arr.push(parseInt(Math.random() * 500, 10));
     }
-})();
+};
 console.log(arr);
+randomArr();
 /**
  * 冒泡排序
  * @param {array} array 待排序数组
  * @returns {array} 排序后数组
  */
-function bubbleSort(array) {
+var bubbleSort = function(array) {
     var temp;
     var length = array.length;
     for (var i = 0; i < length; i++) {
@@ -26,26 +28,79 @@ function bubbleSort(array) {
         }
     }
     return array;
-}
+};
 console.time('bubbleSort');
 console.error(bubbleSort(arr));
 console.timeEnd('bubbleSort');
 
 // 2.选择排序
-
-function selectionSort(array) {
+/**
+ * 选择排序
+ * @param {array} array 待排序数组
+ * @returns {array} 排序后数组
+ */
+var selectionSort = function(array) {
     var temp;
     var indexMin;
     var length = array.length;
-    for (var i = 0; i < length - 1, i++) {
+    for (var i = 0; i < length - 1; i++) {
         indexMin = i;
-        for(var j = i;j<length;j++){
-            if(array[indexMin]>array[j]){
+        for (var j = i; j < length; j++) {
+            if (array[indexMin] > array[j]) {
                 indexMin = j;
             }
         }
-        if(i!==indexMin){
-
+        if (i !== indexMin) {
+            temp = array[i];
+            array[i] = array[indexMin];
+            array[indexMin] = temp;
         }
     }
-}
+    return array;
+};
+
+randomArr();
+
+console.time('selectionSort');
+console.error(selectionSort(arr));
+console.timeEnd('selectionSort');
+
+// 3. 并归排序
+var merge = function(left, right) {
+    var result = [],
+        il = 0,
+        ir = 0;
+    while (il < left.length && ir < right.length) {
+        if (left[il] < right[ir]) {
+            result.push(left[il++]);
+        } else {
+            result.push(right[ir++]);
+        }
+    }
+    while (il < left.length) {
+        result.push(left[il++]);
+    }
+    while (ir < right.length) {
+        result.push(right[ir++]);
+    }
+    return result;
+};
+var mergeSortRec = function(array) {
+    var len = array.length;
+    if (len === 1) {
+        return array;
+    }
+    var mid = Math.floor(len / 2),
+        left = array.slice(0, mid),
+        right = array.slice(mid, len);
+    return merge(mergeSortRec(left), mergeSortRec(right));
+};
+var mergeSort = function(arr) {
+    arr = mergeSortRec(arr);
+    return arr;
+};
+randomArr();
+
+console.time('mergeSort');
+console.error(mergeSort(arr));
+console.timeEnd('mergeSort');
