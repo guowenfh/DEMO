@@ -34,7 +34,7 @@ console.time('bubbleSort');
 console.error(bubbleSort(arr));
 console.timeEnd('bubbleSort');
 randomArr();
-
+console.log(arr);
 // 2.选择排序
 /**
  * 选择排序
@@ -65,6 +65,7 @@ console.time('selectionSort');
 console.error(selectionSort(arr));
 console.timeEnd('selectionSort');
 randomArr();
+console.log(arr);
 
 // 3. 并归排序
 var merge = function(left, right) {
@@ -105,8 +106,9 @@ console.time('mergeSort');
 console.error(mergeSort(arr));
 console.timeEnd('mergeSort');
 randomArr();
+console.log(arr);
 
-
+// 4.快速排序
 
 var swapQuickSort = function(array, index1, index2) {
     var aux = array[index1];
@@ -151,10 +153,11 @@ var quick = function(array, left, right) {
 };
 
 var quickSort = function(array) {
-    array = quick(array, 0, array.length - 1);
+    quick(array, 0, array.length - 1);
     return array;
 };
 console.time('quickSort');
+
 console.error(quickSort(arr));
 console.timeEnd('quickSort');
 randomArr();
