@@ -794,42 +794,49 @@ myReady(function() {
  */
 myReady(function() {
     var ranking = getByClassName(document, 'ranking-list')[0];
-
     Ajax('get', 'http://study.163.com/webDev/hotcouresByCategory.htm', {}, function(str) {
         var arr = JSON.parse(str);
-        console.log(arr);
+        // console.error(arr);
         var i = Math.round(Math.random() * 10);
         var len = i + 10;
+        var html = ''
         for (i; i < len; i++) {
-            // 最外层包裹
-            var hotList = document.createElement('div');
-            hotList.className = 'list-content';
-            hotList.className += ' clearfix';
-            // 左侧图片
-            var hotListImg = document.createElement('img');
-            hotListImg.src = arr[i].smallPhotoUrl;
-            hotListImg.alt = arr[i].name;
-            // 名字
-            var hotListTitle = document.createElement('a');
-            hotListTitle.href = arr[i].providerLink;
-            var titleContent = document.createTextNode(arr[i].name);
-            hotListTitle.appendChild(titleContent);
-            // 学习人数
-            var hotPrice = document.createElement('div');
-            var hotPriceContent = document.createTextNode(arr[i].price);
-            // 图标..
-            var hotPriceIcon = document.createElement('i');
-            hotPriceIcon.innerHTML = '&#xe603;';
-            hotPriceIcon.className = 'iconfont';
-            hotPrice.appendChild(hotPriceIcon);
-            hotPrice.appendChild(hotPriceContent);
+            // // 最外层包裹
+            // var hotList = document.createElement('div');
+            // hotList.className = 'list-content';
+            // hotList.className += ' clearfix';
+            // // 左侧图片
+            // var hotListImg = document.createElement('img');
+            // hotListImg.src = arr[i].smallPhotoUrl;
+            // hotListImg.alt = arr[i].name;
+            // // 名字
+            // var hotListTitle = document.createElement('a');
+            // hotListTitle.href = arr[i].providerLink;
+            // var titleContent = document.createTextNode(arr[i].name);
+            // hotListTitle.appendChild(titleContent);
+            // // 学习人数
+            // var hotPrice = document.createElement('div');
+            // var hotPriceContent = document.createTextNode(arr[i].price);
+            // // 图标..
+            // var hotPriceIcon = document.createElement('i');
+            // hotPriceIcon.innerHTML = '&#xe603;';
+            // hotPriceIcon.className = 'iconfont';
+            // hotPrice.appendChild(hotPriceIcon);
+            // hotPrice.appendChild(hotPriceContent);
 
             // 集中插入
-            hotList.appendChild(hotListImg);
-            hotList.appendChild(hotListTitle);
-            hotList.appendChild(hotPrice);
-            ranking.appendChild(hotList);
+            // hotList.appendChild(hotListImg);
+            // hotList.appendChild(hotListTitle);
+            // hotList.appendChild(hotPrice);
+            // ranking.appendChild(hotList);
+            html +=
+                '<div class="list-content clearfix">' +
+                '<img src="' + arr[i].smallPhotoUrl + '" alt="' + arr[i].name + '">' +
+                '<a href="' + arr[i].providerLink + '">' + arr[i].name + '</a>' +
+                '<div><i class="iconfont">&#xe603;</i>' + arr[i].price + '</div>' +
+                '</div>';
         }
+        ranking.innerHTML = html;
     });
 });
 /* 热门排行结束*/
