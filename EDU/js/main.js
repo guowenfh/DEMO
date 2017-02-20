@@ -47,7 +47,7 @@ function myReady(fn) {
         };
     }
 }
-
+/* cookie设置的三个函数*/
 var cookieTool = {
     /**
      * 设置cookie
@@ -88,12 +88,6 @@ var cookieTool = {
         this.set(name, '1', -1);
     },
 };
-
-/* cookie设置的三个函数*/
-
-
-
-
 
 /**
  *获取实际样式函数
@@ -228,15 +222,15 @@ function Ajax(type, url, data, success, failed) {
     // 用于清除缓存
     var random = Math.random();
 
-    if (typeof data == 'object') {
+    if (typeof data === 'object') {
         var str = '';
         for (var key in data) {
             str += key + '=' + data[key] + '&';
         }
-        data = str.replace(/&$/, '');
+        data = str.replace(/&document.getElementById/, '');
     }
     // 2.拼接传入的json,链接服务器
-    if (type == 'GET') {
+    if (type === 'GET') {
         if (data) {
             xhr.open('GET', url + '?' + data, true);
         } else {
@@ -244,7 +238,7 @@ function Ajax(type, url, data, success, failed) {
         }
         // 3.发送请求
         xhr.send();
-    } else if (type == 'POST') {
+    } else if (type === 'POST') {
         xhr.open('POST', url, true);
         // 如果需要像 html 表单那样 POST 数据，请使用 setRequestHeader() 来添加 http 头。
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -253,8 +247,8 @@ function Ajax(type, url, data, success, failed) {
 
     // 4.处理返回数据
     xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
                 success(xhr.responseText);
             } else {
                 if (failed) {
@@ -271,22 +265,13 @@ function Ajax(type, url, data, success, failed) {
  */
 function showHide(obj) {
     var objDisplay = getStyle(obj, 'display');
-    if (objDisplay == 'none') {
+    if (objDisplay === 'none') {
         obj.style.display = 'block';
     } else {
         obj.style.display = 'none';
 
     }
 }
-/**
- * 获取相应id的dom节点
- * @param   {string} id 传入的id名
- * @returns {object} 返回获取到的html节点
- */
-function $(id) {
-    return document.getElementById(id);
-}
-
 // 工具函数包结束
 
 
@@ -295,8 +280,8 @@ function $(id) {
  *顶部通知条,不再提醒cookie
  */
 myReady(function() {
-    var oNotice = $('notice');
-    var oClose = $('no-notice');
+    var oNotice = document.getElementById('notice');
+    var oClose = document.getElementById('no-notice');
     // 判断顶部通知是否含有cookie
     if (cookieTool.get('close')) {
         oNotice.style.marginTop = -36 + 'px';
@@ -319,15 +304,15 @@ myReady(function() {
  * 关注与登录模块开始
  */
 myReady(function() {
-    var follow = $('follow');
+    var follow = document.getElementById('follow');
     var followAdd = follow.getElementsByTagName('span')[0];
     var removeDefine = getByClassName(follow, 'remove-define')[0];
     var loginWrap = getByClassName(document, 'login-wrap')[0];
-    var loginClose = $('login-close');
-    var user = $('login-form').getElementsByTagName('input')[0];
-    var pass = $('login-form').getElementsByTagName('input')[1];
-    var obtn = getByClassName($('login-form'), 'login-btn')[0];
-    var loginError = getByClassName($('login-form'), 'login-error')[0];
+    var loginClose = document.getElementById('login-close');
+    var user = document.getElementById('login-form').getElementsByTagName('input')[0];
+    var pass = document.getElementById('login-form').getElementsByTagName('input')[1];
+    var obtn = getByClassName(document.getElementById('login-form'), 'login-btn')[0];
+    var loginError = getByClassName(document.getElementById('login-form'), 'login-error')[0];
 
     // 判断是否有关注cookie若有直接设置为关注样式
     if (cookieTool.get('followSuc') === 'true') {
@@ -509,23 +494,23 @@ myReady(function() {
 myReady(function() {
     var moivePlayer = getByClassName(document, 'studyMoive')[0].getElementsByTagName('img')[0];
     var playerWrap = getByClassName(document, 'moive-wrap')[0];
-    var closeMoive = $('moive-close');
-    var moive = $('moive');
+    var closeMoive = document.getElementById('moive-close');
+    var moive = document.getElementById('moive');
 
     function playPause() {
-        if (moive.paused)
+        if (moive.paused) {
             setTimeout(function() {
                 moive.play();
 
             }, 500);
-        else
+        } else {
             moive.pause();
+        }
     }
 
     function play() {
         showHide(playerWrap);
         playPause();
-
     }
     myAddEvent(moivePlayer, 'click', play);
     myAddEvent(closeMoive, 'click', play);
