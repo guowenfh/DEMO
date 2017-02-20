@@ -5,7 +5,7 @@
  * @return {执行}      在dom节点创建时,同时执行,window.onload等到节点全部创建完毕才执行
  * myReady(function(){});
  */
-function myReady (fn) {
+function myReady(fn) {
     // 对于现代浏览器，对DOMContentLoaded事件的处理采用标准的事件绑定方式
     if (document.addEventListener) {
         document.addEventListener('DOMContentLoaded', fn, false);
@@ -13,18 +13,18 @@ function myReady (fn) {
         IEContentLoaded(fn);
     }
     // IE模拟DOMContentLoaded
-    function IEContentLoaded (fn) {
+    function IEContentLoaded(fn) {
         var d = window.document;
         var done = false;
 
         // 只执行一次用户的回调函数init()&#xe603;
-        var init = function () {
+        var init = function() {
             if (!done) {
                 done = true;
                 fn();
             }
         };
-        (function () {
+        (function() {
             try {
                 // DOM树未创建完之前调用doScroll会抛出错误
                 d.documentElement.doScroll('left');
@@ -38,7 +38,7 @@ function myReady (fn) {
         })();
 
         // 监听document的加载状态
-        d.onreadystatechange = function () {
+        d.onreadystatechange = function() {
             // 如果用户是在domReady之后绑定的函数，就立马执行
             if (d.readyState === 'complete') {
                 d.onreadystatechange = null;
@@ -48,47 +48,50 @@ function myReady (fn) {
     }
 }
 
+var cookieTool = {
+    /**
+     * 设置cookie
+     * @param {String} name  设置cookie名
+     * @param {String} value 对对应的cookie名
+     * @param {Number} iDay  过期的时间(多少天后)
+     */
+    set: function(name, value, iDay) {
+        var time = new Date();
+        time.setDate(time.getDate() + iDay);
+        document.cookie = name + '=' + value + ';expires=' + time;
+    },
+    /**
+     * 获取cookie
+     * @param   {String} name 待寻找的cookie名
+     * @returns {String} 返回寻找到的cookie值无时为空
+     */
+    get: function(name) {
+        var arr = document.cookie.split('; ');
+        // 0: "username=abc"
+        // 1: "password=123456"
+        for (var i = 0, len = arr.length; i < len; i++) {
+            var arr2 = arr[i].split('=');
+            // cookieTool.get("username"),传入username时
+            // 0: "username"
+            // 1: "abc"
+            if (arr2[0] === name) {
+                return arr2[1];
+            }
+        }
+        return '';
+    },
+    /**
+     * 删除cookie
+     * @param {String} name 待删除的cookie名
+     */
+    remove: function(name) {
+        this.set(name, '1', -1);
+    },
+};
 
 /* cookie设置的三个函数*/
-/**
- * 设置cookie
- * @param {String} name  设置cookie名
- * @param {String} value 对对应的cookie名
- * @param {Number} iDay  过期的时间(多少天后)
- */
-function setCookie (name, value, iDay) {
-    var oDate = new Date();
-    oDate.setDate(oDate.getDate() + iDay);
-    document.cookie = name + '=' + value + ';expires=' + oDate;
-}
-/**
- * 获取cookie
- * @param   {String} name 待寻找的cookie名
- * @returns {String} 返回寻找到的cookie值无时为空
- */
-function getCookie (name) {
-    // "username=abc","password=123456",
-    var arr = document.cookie.split('; ');
-    // 0: "username=abc"
-    // 1: "password=123456"
-    for (var i = 0, len = arr.length; i < len; i++) {
-        var arr2 = arr[i].split('=');
-        // getCookie("username"),传入username时
-        // 0: "username"
-        // 1: "abc"
-        if (arr2[0] == name) {
-            return arr2[1];
-        }
-    }
-    return '';
-}
-/**
- * 删除cookie
- * @param {String} name 待删除的cookie名
- */
-function removeCookie (name) {
-    setCookie(name, '1', -1);
-}
+
+
 
 
 
@@ -98,7 +101,7 @@ function removeCookie (name) {
  * @param   {String} attr 获取的样式名
  * @returns {String} 获取到的样式值
  */
-function getStyle (obj, attr) {
+function getStyle(obj, attr) {
     // IE写法
     if (obj.currentStyle) {
         return obj.currentStyle[attr];
@@ -114,7 +117,7 @@ function getStyle (obj, attr) {
  * @param   {String} sClass className类名
  * @returns {Array}  获取到的节点数组
  */
-function getByClassName (parent, sClass) {
+function getByClassName(parent, sClass) {
     if (parent.getElementsByClassName) {
         return parent.getElementsByClassName(sClass);
     } else {
@@ -136,9 +139,9 @@ function getByClassName (parent, sClass) {
  * @param {Function} fn   回调函数,是实现链式运动.连续运动.(可选参数)
  */
 
-function startMove (obj, json, fn) {
+function startMove(obj, json, fn) {
     clearInterval(obj.timer);
-    obj.timer = setInterval(function () {
+    obj.timer = setInterval(function() {
         var bStop = true; // 这一次运动就结束了--所以的值都到达了
         for (var attr in json) {
             // 1.取当前的值
@@ -177,10 +180,10 @@ function startMove (obj, json, fn) {
  * @param {String}   type 事件类型
  * @param {Function} fn   事件触发执行的函数
  */
-function myAddEvent (obj, type, fn) {
+function myAddEvent(obj, type, fn) {
     // 标准
     if (obj.addEventListener) {
-        obj.addEventListener(type, function (ev) {
+        obj.addEventListener(type, function(ev) {
             if (false == fn.call(obj)) {
                 // 阻止事件冒泡及默认行为
                 ev.cancelBubble = true;
@@ -189,7 +192,7 @@ function myAddEvent (obj, type, fn) {
         }, false);
     } else if (obj.attachEvent) {
         // IE
-        obj.attachEvent('on' + type, function () {
+        obj.attachEvent('on' + type, function() {
             // 修改ie下this指向window的问题
             if (false == fn.call(obj)) {
                 // 阻止事件冒泡及默认行为
@@ -211,7 +214,7 @@ function myAddEvent (obj, type, fn) {
  * @param {Function} success 请求成功执行的函数
  * @param {Function} failed  请求失败执行的函数.
  */
-function Ajax (type, url, data, success, failed) {
+function Ajax(type, url, data, success, failed) {
     // 1.创建ajax对象
     var xhr = null;
     if (window.XMLHttpRequest) {
@@ -249,7 +252,7 @@ function Ajax (type, url, data, success, failed) {
     }
 
     // 4.处理返回数据
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 success(xhr.responseText);
@@ -266,7 +269,7 @@ function Ajax (type, url, data, success, failed) {
  *  显示隐藏函数,如果是显示就隐藏,是隐藏就显示
  * @param {object} obj 需要在点击或hover后实现点击显示隐藏.的对象
  */
-function showHide (obj) {
+function showHide(obj) {
     var objDisplay = getStyle(obj, 'display');
     if (objDisplay == 'none') {
         obj.style.display = 'block';
@@ -280,7 +283,7 @@ function showHide (obj) {
  * @param   {string} id 传入的id名
  * @returns {object} 返回获取到的html节点
  */
-function $ (id) {
+function $(id) {
     return document.getElementById(id);
 }
 
@@ -291,11 +294,11 @@ function $ (id) {
 /*
  *顶部通知条,不再提醒cookie
  */
-myReady(function () {
+myReady(function() {
     var oNotice = $('notice');
     var oClose = $('no-notice');
     // 判断顶部通知是否含有cookie
-    if (getCookie('close')) {
+    if (cookieTool.get('close')) {
         oNotice.style.marginTop = -36 + 'px';
     } else {
         oNotice.style.marginTop = 0;
@@ -303,11 +306,11 @@ myReady(function () {
 
 
     }
-    myAddEvent(oClose, 'click', function () {
+    myAddEvent(oClose, 'click', function() {
         startMove(oNotice, {
             marginTop: -36
         });
-        setCookie('close', 'false', 30);
+        cookieTool.set('close', 'false', 30);
     });
 });
 /* 通知条结束*/
@@ -315,7 +318,7 @@ myReady(function () {
 /**
  * 关注与登录模块开始
  */
-myReady(function () {
+myReady(function() {
     var follow = $('follow');
     var followAdd = follow.getElementsByTagName('span')[0];
     var removeDefine = getByClassName(follow, 'remove-define')[0];
@@ -327,25 +330,25 @@ myReady(function () {
     var loginError = getByClassName($('login-form'), 'login-error')[0];
 
     // 判断是否有关注cookie若有直接设置为关注样式
-    if (getCookie('followSuc') === 'true') {
+    if (cookieTool.get('followSuc') === 'true') {
         followShow();
     }
     // 从服务器获取关注成功数据,并设置关注成功cookie
-    function followCookie () {
-        Ajax('GET', 'http://study.163.com/webDev/attention.htm', {}, function (data) {
+    function followCookie() {
+        Ajax('GET', 'http://study.163.com/webDev/attention.htm', {}, function(data) {
             if (data == '1') {
                 // 设置关注成功cookie
-                setCookie('followSuc', 'true', 30);
+                cookieTool.set('followSuc', 'true', 30);
             }
-        }, function (err) {
+        }, function(err) {
             console.log('服务器响应失败,错误号:' + err);
 
         });
     }
     // 点击关注事执行的函数
-    function followClick () {
+    function followClick() {
         // 判断是否有登录成功的cookie
-        if (getCookie('loginSuc')) {
+        if (cookieTool.get('loginSuc')) {
             // 存在登录成功的cookie时,点击关注,改变样式.
             followShow();
             // 从服务器获取关注成功数据,并设置关注成功cookie
@@ -357,58 +360,58 @@ myReady(function () {
             // 添加登录事件
             myAddEvent(obtn, 'click', loginBtn);
             // 点击X退出登录层
-            myAddEvent(loginClose, 'click', function () {
+            myAddEvent(loginClose, 'click', function() {
                 loginWrap.style.display = 'none';
             });
 
         }
     }
     // 点击登录服务器响应成功时执行的函数
-    var loginSuccess = function (data) {
+    var loginSuccess = function(data) {
         if (data === '1') {
-                // 设置登录成功函数cookie
-            setCookie('loginSuc', 'true', 30);
-                // 登录成功,登录层消失
+            // 设置登录成功函数cookie
+            cookieTool.set('loginSuc', 'true', 30);
+            // 登录成功,登录层消失
             loginShowHide();
-                // 关注样式改变
+            // 关注样式改变
             followShow();
-                // 从服务器获取关注成功数据,并设置关注成功cookie
+            // 从服务器获取关注成功数据,并设置关注成功cookie
             followCookie();
         } else {
-                /* 登录错误时响应*/
+            /* 登录错误时响应*/
             loginError.style.display = 'block';
-            setTimeout(function () {
-                    loginError.style.display = 'none';
-                }, 2000);
+            setTimeout(function() {
+                loginError.style.display = 'none';
+            }, 2000);
         }
     };
-        // 登录函数
-    function loginBtn () {
+    // 登录函数
+    function loginBtn() {
         // 向服务器提交的数据
         var send = {
             userName: md5(user.value),
             password: md5(pass.value)
         };
         // 异步提交
-        Ajax('GET', 'http://study.163.com/webDev/login.htm', send, loginSuccess, function (error) {
+        Ajax('GET', 'http://study.163.com/webDev/login.htm', send, loginSuccess, function(error) {
             console.log('服务器响应失败,错误号:' + error);
         });
     }
     // 登录层显示
-    function loginShowHide () {
+    function loginShowHide() {
         showHide(loginWrap);
     }
     // 关注层显示
-    function followShow () {
+    function followShow() {
         var followRemove = getByClassName(follow, 'follow-remove')[0];
         showHide(followAdd);
         showHide(followRemove);
 
     }
     // 取消关注时,改变follow样式,且删除cookie;
-    function followNone () {
+    function followNone() {
         followShow();
-        removeCookie('followSuc');
+        cookieTool.remove('followSuc');
     }
     // 给关注按钮添加点击事件
     myAddEvent(followAdd, 'click', followClick);
@@ -420,16 +423,16 @@ myReady(function () {
 /**
  * 轮播图开始,待修改,应该写一个轮播图组件.
  */
-myReady(function () {
+myReady(function() {
     var Slideshow = getByClassName(document, 'Slideshow')[0];
     var aImg = Slideshow.getElementsByTagName('a');
     var aLI = Slideshow.getElementsByTagName('li');
     var timer = null;
     var index = 0;
     // 自动播放函数
-    function autoPlay () {
+    function autoPlay() {
         clearInterval(timer);
-        timer = setInterval(function () {
+        timer = setInterval(function() {
             index++;
             if (index >= aImg.length) {
                 index = 0;
@@ -439,7 +442,7 @@ myReady(function () {
     }
     autoPlay();
     // 改变当前高亮的索引,以及显示的图片,切换方法
-    function change (curIndex) {
+    function change(curIndex) {
         for (var j = 0, len = aImg.length; j < len; j++) {
             aLI[j].className = '';
             startMove(aImg[j], {
@@ -457,12 +460,12 @@ myReady(function () {
     // 添加循环点击切换
     for (var i = 0, len = aImg.length; i < len; i++) {
         aLI[i].id = i;
-        myAddEvent(aLI[i], 'click', function () {
+        myAddEvent(aLI[i], 'click', function() {
             change(this.id);
         });
     }
     // hover时暂停轮播
-    myAddEvent(Slideshow, 'mouseover', function () {
+    myAddEvent(Slideshow, 'mouseover', function() {
         clearInterval(timer);
     });
     // 移出继续轮播
@@ -474,7 +477,7 @@ myReady(function () {
 /*
  * 生活环境图片无缝滚动
  */
-myReady(function () {
+myReady(function() {
     var environment = getByClassName(document, 'environment')[0];
     var environmentUl = getByClassName(environment, 'environment-ul')[0];
     var environmentLi = environmentUl.getElementsByTagName('li');
@@ -483,17 +486,17 @@ myReady(function () {
     environmentUl.innerHTML += environmentUl.innerHTML;
     environmentUl.style.width = environmentLi.length * environmentLi[0].offsetWidth + 'px';
 
-    function ulMove () {
+    function ulMove() {
         environmentUl.style.left = environmentUl.offsetLeft - environmentSpeed + 'px';
         if (environmentUl.offsetLeft <= -environmentUl.offsetWidth / 2) {
             environmentUl.style.left = 0;
         }
     }
     environmentTimer = setInterval(ulMove, 10);
-    myAddEvent(environment, 'mouseover', function () {
+    myAddEvent(environment, 'mouseover', function() {
         clearInterval(environmentTimer);
     });
-    myAddEvent(environment, 'mouseout', function () {
+    myAddEvent(environment, 'mouseout', function() {
         environmentTimer = setInterval(ulMove, 20);
 
     });
@@ -503,15 +506,15 @@ myReady(function () {
 /*
  *视频播放开始
  */
-myReady(function () {
+myReady(function() {
     var moivePlayer = getByClassName(document, 'studyMoive')[0].getElementsByTagName('img')[0];
     var playerWrap = getByClassName(document, 'moive-wrap')[0];
     var closeMoive = $('moive-close');
     var moive = $('moive');
 
-    function playPause () {
+    function playPause() {
         if (moive.paused)
-            setTimeout(function () {
+            setTimeout(function() {
                 moive.play();
 
             }, 500);
@@ -519,7 +522,7 @@ myReady(function () {
             moive.pause();
     }
 
-    function play () {
+    function play() {
         showHide(playerWrap);
         playPause();
 
@@ -532,7 +535,7 @@ myReady(function () {
 /*
  * 课程列表开始
  */
-myReady(function () {
+myReady(function() {
     var design = getByClassName(document, 'design')[0];
     var typeNumber = 10;
     var tabDesign = getByClassName(document, 'conent-tab')[0].getElementsByTagName('li')[0];
@@ -552,7 +555,7 @@ myReady(function () {
     // 默认页码
     var pageNoNumber = 1;
     // tab页切换课程列表
-    function tabChange () {
+    function tabChange() {
         var parent = getByClassName(document, 'design')[0];
         var child = getByClassName(parent, 'class-list');
         var i = 0;
@@ -566,20 +569,20 @@ myReady(function () {
      * 判断屏幕的可见区域大小,实现自适应单页加载数量3列或4列,
      * 因为client的缘故在切换时,会有几px的偏差,暂时没想到解决方案.
      */
-    window.onresize = function () {
+    window.onresize = function() {
         var currClientWidth = document.documentElement.clientWidth || document.body.clientWidth;
         if (clientWidth > 1205 && currClientWidth <= 1205) {
             psizeNumber = 15;
             clientWidth = currClientWidth;
             tabChange();
         } else if (clientWidth <= 1205 && currClientWidth > 1205) {
-                psizeNumber = 20;
-                clientWidth = currClientWidth;
-                tabChange();
-            }
+            psizeNumber = 20;
+            clientWidth = currClientWidth;
+            tabChange();
+        }
     };
-        // 产品设计点击切换
-    myAddEvent(tabDesign, 'click', function () {
+    // 产品设计点击切换
+    myAddEvent(tabDesign, 'click', function() {
         tabLanguage.className = '';
         this.className = 'tab-active';
         typeNumber = 10;
@@ -587,7 +590,7 @@ myReady(function () {
         tabChange();
     });
     // 编程语言点击切换
-    myAddEvent(tabLanguage, 'click', function () {
+    myAddEvent(tabLanguage, 'click', function() {
         tabDesign.className = '';
         this.className = 'tab-active';
         typeNumber = 20;
@@ -606,7 +609,7 @@ myReady(function () {
     var pageUl = getByClassName(document, 'page-ul')[0];
     var pageLi = pageUl.getElementsByTagName('li');
     for (var i = 0; i < pageLi.length; i++) {
-        pageLi[i].onclick = function () {
+        pageLi[i].onclick = function() {
             for (var j = 0; j < pageLi.length; j++) {
                 pageLi[j].className = '';
             }
@@ -623,7 +626,7 @@ myReady(function () {
     // 默认为false表示向下增加
     var UpOrDown = true;
     // 向上向下点击时执行的事件.
-    function upDown () {
+    function upDown() {
         for (var i = 0; i < pageLi.length; i++) {
             // 当向下翻页时传入页码不为8的倍数时,根据条件翻页,处理传入为8时,直接翻页导致最后的8和8的倍数取不到的情况
             if (UpOrDown && parseInt(pageNoNumber % 8) !== 0) {
@@ -649,7 +652,7 @@ myReady(function () {
         tabChange();
     }
     // 向上翻页点击事件
-    myAddEvent(paginationUP, 'click', function () {
+    myAddEvent(paginationUP, 'click', function() {
         pageNoNumber--;
         // 边界处理
         if (pageNoNumber <= 1) {
@@ -659,7 +662,7 @@ myReady(function () {
         upDown();
     });
     // 向下翻页点击事件
-    myAddEvent(paginationDOWN, 'click', function () {
+    myAddEvent(paginationDOWN, 'click', function() {
         pageNoNumber++;
         // 边界处理
         if (pageNoNumber >= totalPage) {
@@ -670,13 +673,14 @@ myReady(function () {
     });
 
     // Ajax函数
-    function course () {
+    function course() {
         var senddata = {
             pageNo: pageNoNumber,
             psize: psizeNumber,
-            type: typeNumber};
+            type: typeNumber
+        };
         Ajax('get', 'http://study.163.com/webDev/couresByCategory.htm', senddata,
-            function (str) {
+            function(str) {
                 // 成功时.课程列表创建函数
                 var arr = JSON.parse(str);
                 // 总页数
@@ -686,7 +690,7 @@ myReady(function () {
                     // 课程列表容器
                     var classList = document.createElement('div');
                     classList.className = 'class-list';
-                        // 课程图片
+                    // 课程图片
                     var classListImg = document.createElement('img');
                     classListImg.src = list[i].middlePhotoUrl;
                     classListImg.alt = list[i].name;
@@ -773,18 +777,19 @@ myReady(function () {
                     hoverDescription.style.display = 'none';
 
                     classList.appendChild(hoverDiv);
-                    classList.appendChild(hoverDescription);}
+                    classList.appendChild(hoverDescription);
+                }
                 // 课程列表的hover效果
                 // 获取课程列表数量
                 var classlisthover = getByClassName(document, 'class-list');
                 for (var i = 0; i < classlisthover.length; i++) {
-                    myAddEvent(classlisthover[i], 'mouseover', function () {
+                    myAddEvent(classlisthover[i], 'mouseover', function() {
                         this.className = 'hover-class-list';
                         getByClassName(this, 'describe')[0].style.display = 'none';
                         getByClassName(this, 'describe-hover')[0].style.display = 'block';
                         getByClassName(this, 'description')[0].style.display = 'block';
                     });
-                    myAddEvent(classlisthover[i], 'mouseout', function () {
+                    myAddEvent(classlisthover[i], 'mouseout', function() {
                         this.className = 'class-list';
                         getByClassName(this, 'describe')[0].style.display = 'block';
                         getByClassName(this, 'describe-hover')[0].style.display = 'none';
@@ -802,10 +807,10 @@ myReady(function () {
 /*
  * 热门排行开始
  */
-myReady(function () {
+myReady(function() {
     var ranking = getByClassName(document, 'ranking-list')[0];
 
-    Ajax('get', 'http://study.163.com/webDev/hotcouresByCategory.htm', {}, function (str) {
+    Ajax('get', 'http://study.163.com/webDev/hotcouresByCategory.htm', {}, function(str) {
         var arr = JSON.parse(str);
         console.log(arr);
         var i = Math.round(Math.random() * 10);
