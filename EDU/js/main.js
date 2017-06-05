@@ -521,6 +521,18 @@ myReady(function() {
  * 课程列表开始
  */
 myReady(function() {
+    function throttle (fn, wait) {
+        var timer;
+        return function() {
+            var args = [].slice.call(arguments);
+            if (!timer) {
+                timer = setTimeout(function() {
+                    timer = null;
+                }, wait);
+                return fn.apply(this, args);
+            }
+        };
+    }
     var design = getByClassName(document, 'design')[0];
     var typeNumber = 10;
     var tabDesign = getByClassName(document, 'conent-tab')[0].getElementsByTagName('li')[0];
@@ -550,12 +562,23 @@ myReady(function() {
         }
         course();
     }
+    function debounce(fn, delay){
+        var timer = null;
+        return function(){
+            var args = [].slice.call(arguments);
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                fn.apply(this, args);
+            }, delay);
+        }
+    }
     /**
      * 判断屏幕的可见区域大小,实现自适应单页加载数量3列或4列,
      * 因为client的缘故在切换时,会有几px的偏差,暂时没想到解决方案.
      */
-    window.onresize = function() {
+    window.onresize = debounce(function() {
         var currClientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        console.error(currClientWidth)
         if (clientWidth > 1205 && currClientWidth <= 1205) {
             psizeNumber = 15;
             clientWidth = currClientWidth;
@@ -565,7 +588,7 @@ myReady(function() {
             clientWidth = currClientWidth;
             tabChange();
         }
-    };
+    }, 500);
     // 产品设计点击切换
     myAddEvent(tabDesign, 'click', function() {
         tabLanguage.className = '';
@@ -831,9 +854,9 @@ myReady(function() {
             // ranking.appendChild(hotList);
             html +=
                 '<div class="list-content clearfix">' +
-                '<img src="' + arr[i].smallPhotoUrl + '" alt="' + arr[i].name + '">' +
-                '<a href="' + arr[i].providerLink + '">' + arr[i].name + '</a>' +
-                '<div><i class="iconfont">&#xe603;</i>' + arr[i].price + '</div>' +
+                    '<img src="' + arr[i].smallPhotoUrl + '" alt="' + arr[i].name + '">' +
+                    '<a href="' + arr[i].providerLink + '">' + arr[i].name + '</a>' +
+                    '<div><i class="iconfont">&#xe603;</i>' + arr[i].price + '</div>' +
                 '</div>';
         }
         ranking.innerHTML = html;
