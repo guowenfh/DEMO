@@ -1,4 +1,7 @@
-(function(window, document) {
+(function(window, document, eduUtil) {
+    var ajax = eduUtil.ajax,
+        addEvent = eduUtil.addEvent,
+        getByClassName = eduUtil.getByClassName;
     // 工具函数
     /**
      * DomReady,在文档创建时,就访问dom元素.比window.onload要快很多.绑定需要执行的函数.
@@ -10,7 +13,7 @@
          * @param  {Function} fn 需要执行的函数
          */
         function IEContentLoaded(fn) {
-            var d = window.document;
+            var d = document;
             var done = false;
 
             // 只执行一次用户的回调函数init()&#xe603;
@@ -48,22 +51,6 @@
         } else {
             IEContentLoaded(fn);
         }
-    }
-    /**
-     * 把传入的对象转化成url的 queryString的形式
-     * @param {Object} data 待转化的对象
-     * @returns {String}
-     */
-    function toQueryString(data) {
-        if (typeof data !== 'object') return '';
-        var param = '';
-        for (var key in data) { // 请求参数拼接
-            if (data.hasOwnProperty(key)) {
-                param += key + '=' + data[key] + '&';
-            }
-        }
-        param = param.replace(/&$/, '');
-        return param;
     }
     /* cookie设置的三个函数*/
     // TODO 参数的编码解码
@@ -108,49 +95,6 @@
         },
     };
     /**
-     * AJAX函数封装
-     * @param {object} options 发送请求的选项参数
-     *   @config {string} [options.url]     请求地址（必须）
-     *   @config {string} [options.type] 请求发送的类型。默认为GET。
-     *   @config {Object} [options.params] 需要发送的数据。
-     *   @config {function} [options.success] 需要发送的数据。
-     *   @config {function} [options.error] 需要发送的数据。
-     */
-    function ajax(options) {
-        options = options || {};
-        var url = options.url || '';
-        var params = options.params || {};
-        var type = (options.type || 'GET').toUpperCase();
-        // 1.创建ajax对象
-        var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        // 2.连接服务器
-        // 3.发送请求
-        if (type === 'GET') {
-            xhr.open('GET', url + (url.indexOf('?') === -1 ? '?' : '&') + toQueryString(params), true);
-            xhr.send();
-        } else if (type === 'POST') {
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-            xhr.send(params);
-        }
-        // 4.接收返回
-        xhr.onreadystatechange = function() {
-            var data;
-            if (xhr.readyState === 4) {
-                if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-                    try {
-                        data = JSON.parse(xhr.responseText);
-                    } catch (e) {
-                        data = xhr.responseText;
-                    }
-                    options.success && options.success(data, xhr);
-                } else {
-                    options.error && options.error(xhr.responseText, xhr);
-                }
-            }
-        };
-    }
-    /**
      *获取实际样式函数
      * @param   {Object} obj  需要获取样式的对象
      * @param   {String} attr 获取的样式名
@@ -165,29 +109,6 @@
             return getComputedStyle(obj, false)[attr];
         }
     }
-
-
-    /** 通过class类名来选取元素
-     * @param   {Object} parent 父级对象,
-     * @param   {String} sClass className类名
-     * @returns {Array}  获取到的节点数组
-     */
-    function getByClassName(parent, sClass) {
-        if (parent.getElementsByClassName) {
-            return parent.getElementsByClassName(sClass);
-        } else {
-            var oEle = parent.getElementsByTagName('*'),
-                arr = [],
-                reg = new RegExp('\\b' + sClass + '\\b');
-            for (var i = 0, len = oEle.length; i < len; i++) {
-                if (reg.test(oEle[i].className)) {
-                    arr.push(oEle[i]);
-                }
-            }
-            return arr;
-        }
-    }
-
     /** 动画设置函数
      * @param {Object}   obj  获取到的节点
      * @param {Object}   json JSON数据,名为attr,值为iTarget.
@@ -226,38 +147,6 @@
             }
         }, 30);
     }
-
-    /**
-     *事件添加函数
-     * @param {Object}   obj  需要绑定事件的对象
-     * @param {String}   type 事件类型
-     * @param {Function} fn   事件触发执行的函数
-     */
-    function myAddEvent(obj, type, fn) {
-        // 标准
-        if (obj.addEventListener) {
-            obj.addEventListener(type, function(ev) {
-                if (false == fn.call(obj)) {
-                    // 阻止事件冒泡及默认行为
-                    ev.cancelBubble = true;
-                    ev.preventDefault();
-                }
-            }, false);
-        } else if (obj.attachEvent) {
-            // IE
-            obj.attachEvent('on' + type, function() {
-                // 修改ie下this指向window的问题
-                if (false === fn.call(obj)) {
-                    // 阻止事件冒泡及默认行为
-                    event.cancelBubble = true;
-                    return false;
-                }
-            });
-        } else {
-            // 最后选择
-            obj['on' + type] = fn;
-        }
-    }
     /**
      *  显示隐藏函数,如果是显示就隐藏,是隐藏就显示
      * @param {object} obj 需要在点击或hover后实现点击显示隐藏.的对象
@@ -289,7 +178,7 @@
 
 
         }
-        myAddEvent(oClose, 'click', function() {
+        addEvent(oClose, 'click', function() {
             startMove(oNotice, {
                 marginTop: -36,
             });
@@ -344,9 +233,9 @@
                 // 本地不存在登录cookie时,进入登入层
                 loginShowHide();
                 // 添加登录事件
-                myAddEvent(obtn, 'click', loginBtn);
+                addEvent(obtn, 'click', loginBtn);
                 // 点击X退出登录层
-                myAddEvent(loginClose, 'click', function() {
+                addEvent(loginClose, 'click', function() {
                     loginWrap.style.display = 'none';
                 });
 
@@ -405,9 +294,9 @@
             cookieTool.remove('followSuc');
         }
         // 给关注按钮添加点击事件
-        myAddEvent(followAdd, 'click', followClick);
+        addEvent(followAdd, 'click', followClick);
         // 给取消关注添加点击事件
-        myAddEvent(removeDefine, 'click', followNone);
+        addEvent(removeDefine, 'click', followNone);
     });
     /* 关注与登录结束*/
 
@@ -451,16 +340,16 @@
         // 添加循环点击切换
         for (var i = 0, len = aImg.length; i < len; i++) {
             aLI[i].id = i;
-            myAddEvent(aLI[i], 'click', function() {
+            addEvent(aLI[i], 'click', function() {
                 change(this.id);
             });
         }
         // hover时暂停轮播
-        myAddEvent(Slideshow, 'mouseover', function() {
+        addEvent(Slideshow, 'mouseover', function() {
             clearInterval(timer);
         });
         // 移出继续轮播
-        myAddEvent(Slideshow, 'mouseout', autoPlay);
+        addEvent(Slideshow, 'mouseout', autoPlay);
 
     });
     /* 轮播图结束*/
@@ -484,10 +373,10 @@
             }
         }
         environmentTimer = setInterval(ulMove, 10);
-        myAddEvent(environment, 'mouseover', function() {
+        addEvent(environment, 'mouseover', function() {
             clearInterval(environmentTimer);
         });
-        myAddEvent(environment, 'mouseout', function() {
+        addEvent(environment, 'mouseout', function() {
             environmentTimer = setInterval(ulMove, 20);
 
         });
@@ -518,8 +407,8 @@
             showHide(playerWrap);
             playPause();
         }
-        myAddEvent(moivePlayer, 'click', play);
-        myAddEvent(closeMoive, 'click', play);
+        addEvent(moivePlayer, 'click', play);
+        addEvent(closeMoive, 'click', play);
     });
     /* 视频播放结束*/
 
@@ -596,7 +485,7 @@
             }
         }, 500);
         // 产品设计点击切换
-        myAddEvent(tabDesign, 'click', function() {
+        addEvent(tabDesign, 'click', function() {
             tabLanguage.className = '';
             this.className = 'tab-active';
             typeNumber = 10;
@@ -604,7 +493,7 @@
             tabChange();
         });
         // 编程语言点击切换
-        myAddEvent(tabLanguage, 'click', function() {
+        addEvent(tabLanguage, 'click', function() {
             tabDesign.className = '';
             this.className = 'tab-active';
             typeNumber = 20;
@@ -666,7 +555,7 @@
             tabChange();
         }
         // 向上翻页点击事件
-        myAddEvent(paginationUP, 'click', function() {
+        addEvent(paginationUP, 'click', function() {
             pageNoNumber--;
             // 边界处理
             if (pageNoNumber <= 1) {
@@ -676,7 +565,7 @@
             upDown();
         });
         // 向下翻页点击事件
-        myAddEvent(paginationDOWN, 'click', function() {
+        addEvent(paginationDOWN, 'click', function() {
             pageNoNumber++;
             // 边界处理
             if (pageNoNumber >= totalPage) {
@@ -798,13 +687,7 @@
                     // 获取课程列表数量
                     var classlisthover = getByClassName(document, 'class-list');
                     for (var i = 0; i < classlisthover.length; i++) {
-                        myAddEvent(classlisthover[i], 'mouseover', function() {
-                            this.className = 'hover-class-list';
-                            getByClassName(this, 'describe')[0].style.display = 'none';
-                            getByClassName(this, 'describe-hover')[0].style.display = 'block';
-                            getByClassName(this, 'description')[0].style.display = 'block';
-                        });
-                        myAddEvent(classlisthover[i], 'mouseout', function() {
+                        addEvent(classlisthover[i], 'mouseout', function() {
                             this.className = 'class-list';
                             getByClassName(this, 'describe')[0].style.display = 'block';
                             getByClassName(this, 'describe-hover')[0].style.display = 'none';
@@ -845,4 +728,4 @@
     });
     /* 热门排行结束*/
 
-})(window, document);
+})(window, document, window.eduUtil);
