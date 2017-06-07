@@ -120,7 +120,7 @@
         //  要求 return 语句要么总是指定返回的值，要么不指定
         "consistent-return": 0,
         // 强制所有控制语句使用一致的括号风格
-        "curly": [2, "all"],
+        "curly": [0, "all"],
         // switch 语句强制 default 分支，也可添加 // no default 注释取消此次警告
         "default-case": 2,
         // 强制object.key 中 . 的位置，参数:

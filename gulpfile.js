@@ -6,8 +6,8 @@ var plugins = gulpLoadPlugins();
 // 浏览器自动刷新插件，因为不是gulp模块所以需要单独声明
 var browserSync = require('browser-sync');
 
-var base = './DataStructuresandAlgorithms/list/';
-var urlConfig = 'main.js';
+var base = './EDU/list/';
+var urlConfig = 'js/main.js';
 
 // gulp.src,可以模糊匹配
 /**
@@ -29,7 +29,7 @@ gulp.task('minify', function() {
         .pipe(gulp.dest(base + 'build'));
 });
 
-var browser = './DataStructuresandAlgorithms/';
+var browser = './EDU/';
 
 /**
  * 浏览器自刷新
@@ -43,7 +43,7 @@ gulp.task('browser-sync', function() {
 
     browserSync.init(files, {
         server: {
-            baseDir: browser + 'LinkedList/',
+            baseDir: browser + '/',
         },
     });
 });
