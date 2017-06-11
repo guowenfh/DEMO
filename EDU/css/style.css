@@ -228,7 +228,7 @@ body {
 }
 
 .moive-content p {
-    color：#424242;
+    color:#424242;
     font-size: 18px;
     padding-left: 30px;
     margin-bottom: 20px;
@@ -392,7 +392,7 @@ body {
 .Slideshow a {
     position: absolute;
     filter: alpha(opacity: 100);
-    opacity: 1;
+    opacity : 1 ;
 }
 
 .Slideshow img {
